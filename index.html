@@ -258,7 +258,7 @@
             </section>
         </div>
 
-        <!-- TAB 3: 4인 준비물 (실시간 DB 연동) -->
+        <!-- TAB 3: 4인 준비물 -->
         <div id="tab-checklist" class="tab-content space-y-8">
             <section class="am-card p-6 sm:p-8 space-y-8">
                 <div class="space-y-1.5">
@@ -270,7 +270,7 @@
             </section>
         </div>
 
-        <!-- TAB 4: 먹방 코스 (실시간 DB 연동) -->
+        <!-- TAB 4: 먹방 코스 -->
         <div id="tab-meals" class="tab-content space-y-8">
             <section class="am-card p-6 sm:p-8 space-y-8">
                 <div class="flex items-center justify-between">
@@ -300,7 +300,6 @@
 
                 <div id="meals-list-container" class="space-y-8 pt-2"></div>
 
-                <!-- 구매 필요 식자재 통합 리스트 & N빵 계산기 -->
                 <div class="space-y-3 pt-4 border-t border-slate-100">
                     <div class="flex items-center justify-between">
                         <div class="space-y-1">
@@ -344,7 +343,7 @@
             </section>
         </div>
 
-        <!-- TAB 5: 자유 의견 게시판 (실시간 DB 연동) -->
+        <!-- TAB 5: 자유 의견 게시판 -->
         <div id="tab-discussion" class="tab-content space-y-8">
             <section class="am-card p-6 sm:p-8 space-y-6">
                 <div class="space-y-1.5">
@@ -670,14 +669,25 @@
             saveShoppingListToDB();
         }
 
-        // D. 자유 의견 게시판 DB 연동
+        // D. 자유 의견 게시판 DB 연동 (10분 기준 "방금 전" / "아까 전" 상대시간 반영)
         let comments = [];
+
+        // 상대 시간 계산 함수
+        function getRelativeTime(timestamp) {
+            if (!timestamp) return '방금 전';
+            const diffInMinutes = Math.floor((Date.now() - timestamp) / (1000 * 60));
+            if (diffInMinutes >= 10) {
+                return '아까 전';
+            }
+            return '방금 전';
+        }
+
         db.ref('comments').on('value', (snapshot) => {
             const data = snapshot.val();
             if (data) {
                 comments = data;
             } else {
-                comments = [{ id: 1, author: '관리자', text: '추가하고 싶은 항목이나 의견은 자유롭게 남겨주세요!', time: '공지', isNotice: true }];
+                comments = [{ id: 1, author: '관리자', text: '추가하고 싶은 항목이나 의견은 자유롭게 남겨주세요!', timestamp: Date.now(), isNotice: true }];
                 db.ref('comments').set(comments);
             }
             renderComments();
@@ -697,7 +707,7 @@
                     <div class="flex justify-between items-center text-xs">
                         <div class="flex items-center gap-2">
                             <span class="font-bold text-slate-900">${c.author}</span>
-                            <span class="text-[10px] text-slate-400">${c.time}</span>
+                            <span class="text-[10px] text-slate-400">${c.isNotice ? '공지' : getRelativeTime(c.timestamp)}</span>
                         </div>
                         ${!c.isNotice ? `<button onclick="deleteComment(${c.id})" class="text-[10px] text-slate-400 hover:text-rose-600">삭제</button>` : ''}
                     </div>
@@ -711,7 +721,7 @@
             const authorInput = document.getElementById('comment-author');
             const textInput = document.getElementById('comment-text');
             if (!authorInput.value.trim() || !textInput.value.trim()) return;
-            comments.unshift({ id: Date.now(), author: authorInput.value.trim(), text: textInput.value.trim(), time: '방금 전', isNotice: false });
+            comments.unshift({ id: Date.now(), author: authorInput.value.trim(), text: textInput.value.trim(), timestamp: Date.now(), isNotice: false });
             authorInput.value = ''; textInput.value = '';
             saveCommentsToDB();
         }
