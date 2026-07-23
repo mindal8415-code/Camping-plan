@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1박 2일 홍천 모곡밤벌유원지 4인 캠핑 가이드 - Soft Translucent Yellow-Lime Style</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        * {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body { 
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif; 
+            color: #0f172a;
+            background-color: #ffffff;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: iosFade 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes iosFade {
+            from { opacity: 0; transform: scale(0.99); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* 순백색 카드 + 여백 입체 그림자 시스템 */
+        .am-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(241, 245, 249, 0.9);
+        }
+
+        /* Yellow-Lime Checkbox Styling */
+        input[type="checkbox"] {
+            accent-color: #84cc16;
+        }
+        input[type="checkbox"]:checked + span {
+            text-decoration: line-through;
+            color: #94a3b8;
+        }
+
+        /* 재료 목록 및 장보기 리스트 토글 애니메이션 */
+        .ingredient-box {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ingredient-box.open {
+            max-height: 1200px;
+            opacity: 1;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8 md:p-12 min-h-screen antialiased">
+
+    <!-- MAIN CONTAINER (Spacious Layout) -->
+    <div class="max-w-2xl mx-auto space-y-8">
+        
+        <!-- Header (Icon Removed) -->
+        <header class="space-y-2 px-1 pt-2">
+            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                Camping Guide • 4 Persons
+            </span>
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+                모곡밤벌유원지 가이드
+            </h1>
+            <div class="flex flex-wrap items-center gap-2 pt-1 text-xs font-medium text-slate-500">
+                <span>전기차 V2L 지원</span>
+                <span>•</span>
+                <span>성인 남성 4인</span>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs (Dynamic Selected-Only Icon & Chip) -->
+        <nav class="flex gap-1.5 py-1 overflow-x-auto">
+            <button onclick="switchMainTab('spot')" id="mbtn-spot" class="flex-1 py-2.5 px-1.5 text-center font-bold text-[11px] sm:text-sm rounded-xl bg-[#E5FF66]/80 text-slate-950 shadow-sm transition-all duration-200 shrink-0 whitespace-nowrap">
+                📍 스팟 분석
+            </button>
+            <button onclick="switchMainTab('v2l')" id="mbtn-v2l" class="flex-1 py-2.5 px-1.5 text-center font-semibold text-[11px] sm:text-sm rounded-xl text-slate-500 hover:text-slate-900 transition-all duration-200 shrink-0 whitespace-nowrap">
+                V2L 활용
+            </button>
+            <button onclick="switchMainTab('checklist')" id="mbtn-checklist" class="flex-1 py-2.5 px-1.5 text-center font-semibold text-[11px] sm:text-sm rounded-xl text-slate-500 hover:text-slate-900 transition-all duration-200 shrink-0 whitespace-nowrap">
+                4인 준비물
+            </button>
+            <button onclick="switchMainTab('meals')" id="mbtn-meals" class="flex-1 py-2.5 px-1.5 text-center font-semibold text-[11px] sm:text-sm rounded-xl text-slate-500 hover:text-slate-900 transition-all duration-200 shrink-0 whitespace-nowrap">
+                먹방 코스
+            </button>
+            <button onclick="switchMainTab('discussion')" id="mbtn-discussion" class="flex-1 py-2.5 px-1.5 text-center font-semibold text-[11px] sm:text-sm rounded-xl text-slate-500 hover:text-slate-900 transition-all duration-200 shrink-0 whitespace-nowrap">
+                자유 의견
+            </button>
+        </nav>
+
+        <!-- ==================== TAB 1: 확정 스팟 분석 ==================== -->
+        <div id="tab-spot" class="tab-content active space-y-8">
+            
+            <!-- Overview Section (Unified Header & Distance Area) -->
+            <section class="am-card p-6 sm:p-8 space-y-6">
+                <div class="space-y-1.5">
+                    <span class="text-[11px] font-bold text-[#3F5E00] uppercase tracking-wider block">Spot Overview</span>
+                    <h2 class="text-2xl font-bold text-slate-900 tracking-tight">홍천 모곡밤벌유원지</h2>
+                    <p class="text-xs sm:text-sm text-slate-400">강원특별자치도 홍천군 서면 모곡리 527-6 일원 (강변 노지)</p>
+                </div>
+
+                <!-- Distance Banner -->
+                <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                    <span class="text-xs sm:text-sm text-slate-500 font-medium">남춘천역 출발 기준</span>
+                    <span class="text-base sm:text-lg font-black text-[#3F5E00]">약 42 km <span class="text-xs sm:text-sm text-slate-700 font-normal">(차량 45~50분)</span></span>
+                </div>
+
+                <!-- 3 Key Features -->
+                <div class="space-y-4 pt-1">
+                    <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">Key Highlights</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                        <div class="space-y-1">
+                            <strong class="text-slate-900 font-bold block text-xs sm:text-sm">환경 & 시설</strong>
+                            <p class="text-[11px] sm:text-xs text-slate-500 leading-normal">넓은 자갈·모래 강변. 24시간 무료. 성수기 화장실/매점 운영.</p>
+                        </div>
+                        <div class="space-y-1">
+                            <strong class="text-slate-900 font-bold block text-xs sm:text-sm">진입 편의성</strong>
+                            <p class="text-[11px] sm:text-xs text-slate-500 leading-normal">입구 차량 진입 용이. 안쪽 구역 2WD 모래 빠짐 주의.</p>
+                        </div>
+                        <div class="space-y-1">
+                            <strong class="text-slate-900 font-bold block text-xs sm:text-sm">V2L 노지 요소</strong>
+                            <p class="text-[11px] sm:text-xs text-slate-500 leading-normal">전기 미보급 구역. 전기차 V2L 활용 시 압도적 편의성.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DO & DON'T Section -->
+            <section class="space-y-4">
+                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block px-1">Field Guidelines</span>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <!-- DO -->
+                    <div class="am-card p-6 space-y-4">
+                        <h3 class="text-sm sm:text-base font-bold text-[#3F5E00] flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-[#E5FF66]"></span>
+                            추천 행동 (DO)
+                        </h3>
+                        <ul class="space-y-3.5 text-xs sm:text-sm text-slate-700">
+                            <li class="flex items-start gap-2.5">
+                                <span class="font-bold text-[#3F5E00] text-xs pt-0.5 shrink-0">01</span>
+                                <div class="space-y-0.5">
+                                    <strong class="block font-bold text-slate-900 text-xs sm:text-sm">핑거팩(단조팩) & 망치 필수</strong>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 leading-relaxed">자갈밭 환경. 일반 알루미늄 팩 사용 불가.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="font-bold text-[#3F5E00] text-xs pt-0.5 shrink-0">02</span>
+                                <div class="space-y-0.5">
+                                    <strong class="block font-bold text-slate-900 text-xs sm:text-sm">두꺼운 신발 착용</strong>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 leading-relaxed">자갈이 날카로워 아쿠아슈즈나 두꺼운 슬리퍼 착용.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="font-bold text-[#3F5E00] text-xs pt-0.5 shrink-0">03</span>
+                                <div class="space-y-0.5">
+                                    <strong class="block font-bold text-slate-900 text-xs sm:text-sm">수평 돌받침 활용</strong>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 leading-relaxed">차박/텐트 피칭 시 바퀴 밑 고임목 활용.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- DON'T -->
+                    <div class="am-card p-6 space-y-4">
+                        <h3 class="text-sm sm:text-base font-bold text-[#e11d48] flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-[#f43f5e]"></span>
+                            주의 및 금지 (DON'T)
+                        </h3>
+                        <ul class="space-y-3.5 text-xs sm:text-sm text-slate-700">
+                            <li class="flex items-start gap-2.5">
+                                <span class="font-bold text-[#e11d48] text-xs pt-0.5 shrink-0">01</span>
+                                <div class="space-y-0.5">
+                                    <strong class="block font-bold text-slate-900 text-xs sm:text-sm">2WD 깊은 진입 금지</strong>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 leading-relaxed">바퀴 빠짐 사고 빈번. 입구 탄탄한 구역 주차.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="font-bold text-[#e11d48] text-xs pt-0.5 shrink-0">02</span>
+                                <div class="space-y-0.5">
+                                    <strong class="block font-bold text-slate-900 text-xs sm:text-sm">맨바닥 불 피우기 금지</strong>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 leading-relaxed">반드시 받침대 있는 화로대 사용.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <span class="font-bold text-[#e11d48] text-xs pt-0.5 shrink-0">03</span>
+                                <div class="space-y-0.5">
+                                    <strong class="block font-bold text-slate-900 text-xs sm:text-sm">재/음식물 투기 금지</strong>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 leading-relaxed">종량제 봉투에 완전 회수.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Local Amenities Section (Sub-item title font size scaled down by 2px for clear visual hierarchy) -->
+            <section class="space-y-4">
+                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block px-1">Infrastructure & Facilities</span>
+                <div class="am-card p-6 sm:p-8 space-y-6">
+                    <div class="space-y-1 border-b border-slate-100 pb-3.5">
+                        <span class="text-[11px] font-bold text-[#3F5E00] uppercase tracking-wider block">Local Amenities</span>
+                        <h3 class="text-xl font-bold text-slate-900 tracking-tight">편의점·개수대·샤워장 안내</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 text-xs sm:text-sm">
+                        <!-- 편의점 정보 -->
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-sm border-l-2 border-[#84cc16] pl-2.5">편의점 & 마트</h4>
+                            <div class="space-y-3.5 text-slate-600">
+                                <div class="space-y-0.5">
+                                    <strong class="text-slate-900 font-bold block text-[11px] sm:text-xs">초입 사설 마트 (새벽 1시)</strong>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 leading-relaxed">장작, 부탄가스, 얼음, 쓰레기봉투 판매. 구매 시 화장실 비번 & 개수대 이용 권한 지급.</p>
+                                </div>
+                                <div class="space-y-0.5">
+                                    <strong class="text-slate-900 font-bold block text-[11px] sm:text-xs">CU 홍천모곡점 (차량 1~2분)</strong>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 leading-relaxed">시내 위치. 1+1 행사, 통신사 할인, 도시락 등 진입 전 미리 구매 추천.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 개수대 및 샤워장 정보 -->
+                        <div class="space-y-4">
+                            <h4 class="font-bold text-slate-900 text-xs sm:text-sm border-l-2 border-[#84cc16] pl-2.5">개수대 & 샤워장</h4>
+                            <div class="space-y-3.5 text-slate-600">
+                                <div class="space-y-0.5">
+                                    <strong class="text-slate-900 font-bold block text-[11px] sm:text-xs">개수대 (매점 이용)</strong>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 leading-relaxed">노지 자체 개수대 없음. 매점 15,000원 이상 구매 시 매점 개수대 무료 이용 가능.</p>
+                                </div>
+                                <div class="space-y-0.5">
+                                    <strong class="text-slate-900 font-bold block text-[11px] sm:text-xs">샤워장 (유료)</strong>
+                                    <p class="text-[11px] sm:text-xs text-slate-500 leading-relaxed">매점 결제 후 이용 (1인 4,000원). 온수 가능하며 슬리퍼 필수. 동계 미운영.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== TAB 2: V2L 스마트 활용 ==================== -->
+        <div id="tab-v2l" class="tab-content space-y-8">
+            <section class="am-card p-6 sm:p-8 space-y-6">
+                <div class="space-y-1.5">
+                    <span class="text-[11px] font-bold text-[#3F5E00] uppercase tracking-wider block">Power Source</span>
+                    <h2 class="text-2xl font-bold text-slate-900 tracking-tight">전기차 V2L 실용 가이드</h2>
+                    <p class="text-xs sm:text-sm text-slate-400">최대 3.5kW 전원 공급 · 실용 아이템 5종</p>
+                </div>
+
+                <div class="space-y-5 pt-2">
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-[#3F5E00] uppercase tracking-wider block">Item 01</span>
+                        <h4 class="font-bold text-slate-900 text-sm sm:text-base">초고속 에어펌프</h4>
+                        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">500W AC 펌프로 4인 에어매트 수초 내 완충.</p>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-[#3F5E00] uppercase tracking-wider block">Item 02</span>
+                        <h4 class="font-bold text-slate-900 text-sm sm:text-base">안전 전기장판 (2개)</h4>
+                        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">일산화탄소 위험 없는 안전 야간 난방.</p>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-[#3F5E00] uppercase tracking-wider block">Item 03</span>
+                        <h4 class="font-bold text-slate-900 text-sm sm:text-base">미니 빔프로젝터</h4>
+                        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">전원 걱정 없는 심야 야외 영화 투사.</p>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-[#3F5E00] uppercase tracking-wider block">Item 04</span>
+                        <h4 class="font-bold text-slate-900 text-sm sm:text-base">초스피드 전기포트</h4>
+                        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">1800W 포트로 강풍 상관없이 1분 완수.</p>
+                    </div>
+                    <div class="space-y-1">
+                        <span class="text-[10px] font-bold text-[#3F5E00] uppercase tracking-wider block">Item 05</span>
+                        <h4 class="font-bold text-slate-900 text-sm sm:text-base">고전력 LED 조명</h4>
+                        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">220V 방수 투광등으로 사이트 일체 조명.</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-500/10 p-5 rounded-2xl text-xs sm:text-sm space-y-1.5 mt-2">
+                    <strong class="font-bold text-amber-800 block text-sm">V2L 필수 체크사항</strong>
+                    <p class="text-slate-700 leading-relaxed">방수 릴선(10m+) 지참 및 복귀 주행을 위한 배터리 하한선 20~30% 설정 필수.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== TAB 3: 4인 준비물 체크리스트 (수정/추가 가능) ==================== -->
+        <div id="tab-checklist" class="tab-content space-y-8">
+            <section class="am-card p-6 sm:p-8 space-y-8">
+                <div class="space-y-1.5">
+                    <span class="text-[11px] font-bold text-[#3F5E00] uppercase tracking-wider block">Equipment Checklist</span>
+                    <h2 class="text-2xl font-bold text-slate-900 tracking-tight">4인 노지 필수 장비</h2>
+                    <p class="text-xs sm:text-sm text-slate-400">자갈밭 노지 환경 기준 4인 정량 세팅 (자유롭게 추가/수정 가능)</p>
+                </div>
+
+                <!-- Dynamic Editable Checklist Container -->
+                <div id="checklist-container" class="space-y-8 text-xs sm:text-sm">
+                    <!-- Injected dynamically via JS -->
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== TAB 4: 4인 먹방 풀코스 ==================== -->
+        <div id="tab-meals" class="tab-content space-y-8">
+            <section class="am-card p-6 sm:p-8 space-y-8">
+                <div class="flex items-center justify-between">
+                    <div class="space-y-1.5">
+                        <span class="text-[11px] font-bold text-[#3F5E00] uppercase tracking-wider block">Meal Schedule</span>
+                        <h2 class="text-2xl font-bold text-slate-900 tracking-tight">4인 먹방 코스 식단</h2>
+                        <p class="text-xs sm:text-sm text-slate-400">성인 남성 4인 기준 정량 세팅 코스 (식단 및 재료 편집 지원)</p>
+                    </div>
+                    <button onclick="showAddMealForm()" class="px-3 py-1.5 text-xs font-bold bg-[#E5FF66]/80 hover:bg-[#E5FF66] text-slate-950 rounded-xl transition-all duration-200 shadow-sm shrink-0">
+                        + 식단 추가
+                    </button>
+                </div>
+
+                <!-- Add New Meal Form -->
+                <div id="add-meal-form-box" class="hidden bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                    <h4 class="font-bold text-xs sm:text-sm text-slate-900">새 식단 코스 등록</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="text" id="new-meal-day" placeholder="식단 태그 (예: DAY 2 점심)" class="p-2 text-xs rounded-xl border border-slate-200">
+                        <input type="text" id="new-meal-time" placeholder="시간 태그 (예: ⏱️ 오후 1시)" class="p-2 text-xs rounded-xl border border-slate-200">
+                    </div>
+                    <input type="text" id="new-meal-title" placeholder="메뉴 제목" class="w-full p-2 text-xs sm:text-sm rounded-xl border border-slate-200">
+                    <textarea id="new-meal-desc" rows="2" placeholder="메뉴 설명" class="w-full p-2 text-xs sm:text-sm rounded-xl border border-slate-200"></textarea>
+                    <div class="flex justify-end gap-2 text-xs">
+                        <button onclick="saveNewMeal()" class="px-3 py-1.5 font-bold bg-[#E5FF66]/80 text-slate-950 rounded-lg">등록</button>
+                        <button onclick="hideAddMealForm()" class="px-3 py-1.5 text-slate-400">취소</button>
+                    </div>
+                </div>
+
+                <!-- Dynamic Meals Container -->
+                <div id="meals-list-container" class="space-y-8 pt-2">
+                    <!-- Injected dynamically via JS -->
+                </div>
+
+                <!-- 6. 구매 필요 식자재 통합 리스트 & N빵 실시간 계산기 -->
+                <div class="space-y-3 pt-4 border-t border-slate-100">
+                    <div class="flex items-center justify-between">
+                        <div class="space-y-1">
+                            <span class="text-[10px] font-bold text-slate-950 bg-[#E5FF66]/80 px-2.5 py-0.5 rounded inline-block font-black">
+                                GROCERY & BUDGET
+                            </span>
+                            <h3 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight">
+                                구매 필요 식자재 통합 리스트
+                            </h3>
+                        </div>
+                        <button onclick="toggleIngredient('shopping-list-box')" class="flex items-center gap-1 text-xs font-bold text-[#3F5E00] hover:text-slate-900 transition-colors py-1">
+                            <span>장보기 목록</span>
+                            <span id="arrow-shopping-list-box" class="text-[10px] transition-transform duration-200">▾</span>
+                        </button>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                        각 품목별 예상 가격을 기입하고 구매한 항목을 체크해보세요. 상단 식단 재료 수정 시 자동 연동됩니다.
+                    </p>
+
+                    <!-- Collapsible Shopping List Area -->
+                    <div id="shopping-list-box" class="ingredient-box space-y-4">
+                        <!-- Input Form to Add New Items (Title + Price) -->
+                        <form onsubmit="addShoppingItem(event)" class="flex gap-2 pt-2">
+                            <input type="text" id="shopping-input" placeholder="식자재 품목 (예: 생수 2L x 6)" class="flex-1 p-2 text-xs sm:text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-slate-400">
+                            <input type="number" id="shopping-price-input" placeholder="가격(원)" class="w-24 p-2 text-xs sm:text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-slate-400">
+                            <button type="submit" class="px-4 py-2 text-xs sm:text-sm font-bold bg-[#E5FF66]/80 hover:bg-[#E5FF66] text-slate-950 rounded-xl transition-all duration-200 shrink-0">
+                                추가
+                            </button>
+                        </form>
+
+                        <!-- Dynamic Shopping Items Container -->
+                        <div id="shopping-items-container" class="space-y-2 pt-1 border-t border-slate-100">
+                            <!-- Injected dynamically via JS -->
+                        </div>
+
+                        <!-- Real-time Cost Summary Dashboard Box -->
+                        <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-100 space-y-3 mt-4">
+                            <div class="flex justify-between items-center text-xs sm:text-sm">
+                                <span class="text-slate-600 font-medium">체크한 구매 물품 총액</span>
+                                <span id="total-price-display" class="font-extrabold text-slate-900 text-sm sm:text-base">0 원</span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs sm:text-sm pt-2 border-t border-slate-200/60">
+                                <span class="font-bold text-[#3F5E00]">👥 4인 1인당 분담 금액</span>
+                                <span id="per-person-price-display" class="font-black text-slate-950 text-base sm:text-lg bg-[#E5FF66]/80 px-2.5 py-0.5 rounded-lg">0 원</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== TAB 5: 자유 의견 게시판 ==================== -->
+        <div id="tab-discussion" class="tab-content space-y-8">
+            <section class="am-card p-6 sm:p-8 space-y-6">
+                <div class="space-y-1.5">
+                    <span class="text-[11px] font-bold text-[#3F5E00] uppercase tracking-wider block">Open Board</span>
+                    <h2 class="text-2xl font-bold text-slate-900 tracking-tight">자유 의견 게시판</h2>
+                    <p class="text-xs sm:text-sm text-slate-400">캠핑 멤버들이 자유롭게 의견 및 추가 준비물을 남기는 공간입니다.</p>
+                </div>
+
+                <!-- Input Form -->
+                <form onsubmit="addComment(event)" class="space-y-3 pt-2">
+                    <div class="flex gap-2">
+                        <input type="text" id="comment-author" placeholder="이름" required class="w-1/3 p-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-slate-400">
+                        <input type="text" id="comment-text" placeholder="의견을 입력하세요..." required class="w-2/3 p-2.5 text-xs sm:text-sm rounded-xl border border-slate-200 focus:outline-none focus:border-slate-400">
+                    </div>
+                    <button type="submit" class="w-full py-2.5 text-xs sm:text-sm font-bold bg-[#E5FF66]/80 hover:bg-[#E5FF66] text-slate-950 rounded-xl transition-all duration-200 shadow-sm">
+                        의견 남기기
+                    </button>
+                </form>
+
+                <!-- Comment List -->
+                <div id="comment-list" class="space-y-4 pt-4 border-t border-slate-100">
+                    <!-- Dynamic comments with edit/delete will be injected here -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Centered 2-line Footer -->
+        <footer class="text-center text-[11px] sm:text-xs text-slate-400 pt-6 pb-12 leading-relaxed font-medium">
+            홍천 모곡밤벌유원지는 무료 노지입니다.<br>
+            발생한 쓰레기는 종량제 봉투에 담아 회수해 주세요.
+        </footer>
+    </div>
+
+    <script>
+        // 1. 네비게이션 탭 스위처
+        const tabData = {
+            spot: { label: '스팟 분석', icon: '📍' },
+            v2l: { label: 'V2L 활용', icon: '⚡' },
+            checklist: { label: '4인 준비물', icon: '🎒' },
+            meals: { label: '먹방 코스', icon: '🍖' },
+            discussion: { label: '자유 의견', icon: '💬' }
+        };
+
+        function switchMainTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            
+            Object.keys(tabData).forEach(t => {
+                const btn = document.getElementById('mbtn-' + t);
+                if (t === tabName) {
+                    btn.className = "flex-1 py-2.5 px-1.5 text-center font-bold text-[11px] sm:text-sm rounded-xl bg-[#E5FF66]/80 text-slate-950 shadow-sm transition-all duration-200 shrink-0 whitespace-nowrap";
+                    btn.innerHTML = `${tabData[t].icon} ${tabData[t].label}`;
+                } else {
+                    btn.className = "flex-1 py-2.5 px-1.5 text-center font-semibold text-[11px] sm:text-sm rounded-xl text-slate-500 hover:text-slate-900 transition-all duration-200 shrink-0 whitespace-nowrap";
+                    btn.innerHTML = tabData[t].label;
+                }
+            });
+
+            document.getElementById('tab-' + tabName).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleIngredient(targetId) {
+            const target = document.getElementById(targetId);
+            const arrow = document.getElementById('arrow-' + targetId);
+            
+            if (target.classList.contains('open')) {
+                target.classList.remove('open');
+                if(arrow) arrow.style.transform = 'rotate(0deg)';
+            } else {
+                target.classList.add('open');
+                if(arrow) arrow.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // ==========================================
+        // 2. 4인 준비물 체크리스트 동적 스크립트 (CRUD)
+        // ==========================================
+        let checklistData = [
+            {
+                category: "1. 쉘터 & 잠자리",
+                items: [
+                    { id: 101, text: "대형 텐트(4~6인용) / 차박+텐트", checked: false, isImportant: false, isEditing: false },
+                    { id: 102, text: "강철 핑거팩(20cm+) 16개+ & 망치", checked: false, isImportant: true, isEditing: false },
+                    { id: 103, text: "방수포 + 4인용 에어매트", checked: false, isImportant: false, isEditing: false },
+                    { id: 104, text: "침낭/이불 4개 + 베개 4개", checked: false, isImportant: false, isEditing: false },
+                    { id: 105, text: "V2L 전기장판 2개", checked: false, isImportant: false, isEditing: false }
+                ]
+            },
+            {
+                category: "2. 취사 & 키친",
+                items: [
+                    { id: 201, text: "대형 그리들 + 강풍 버너(L)", checked: false, isImportant: false, isEditing: false },
+                    { id: 202, text: "부탄가스 4~5탄 + 전기포트", checked: false, isImportant: false, isEditing: false },
+                    { id: 203, text: "조리도구 (가위 2, 집게 2, 국자)", checked: false, isImportant: false, isEditing: false },
+                    { id: 204, text: "45L+ 아이스박스 + 생수 2L x 6", checked: false, isImportant: false, isEditing: false },
+                    { id: 205, text: "일회용 수저/접시/컵 4인분", checked: false, isImportant: false, isEditing: false }
+                ]
+            },
+            {
+                category: "3. V2L 전기 & 장비",
+                items: [
+                    { id: 301, text: "V2L 젠더 + 방수 릴선 (10m+)", checked: false, isImportant: false, isEditing: false },
+                    { id: 302, text: "AC 에어펌프 + 220V LED 조명", checked: false, isImportant: false, isEditing: false },
+                    { id: 303, text: "미니 빔프로젝터 + 충전 케이블", checked: false, isImportant: false, isEditing: false },
+                    { id: 304, text: "릴랙스 체어 4개 + 대형 테이블", checked: false, isImportant: false, isEditing: false }
+                ]
+            },
+            {
+                category: "4. 위생 & 안전",
+                items: [
+                    { id: 401, text: "홍천 종량제 봉투 50L + 음식물 봉투", checked: false, isImportant: true, isEditing: false },
+                    { id: 402, text: "물티슈 2팩 + 두루마리 휴지 3롤", checked: false, isImportant: false, isEditing: false },
+                    { id: 403, text: "모기향(케이스 포함) & 기피제", checked: false, isImportant: false, isEditing: false },
+                    { id: 404, text: "받침대 화로대 + 장작 + 세면도구", checked: false, isImportant: false, isEditing: false }
+                ]
+            }
+        ];
+
+        function renderChecklist() {
+            const container = document.getElementById('checklist-container');
+            if (!container) return;
+
+            container.innerHTML = checklistData.map((cat, catIdx) => `
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                        <h3 class="font-bold text-[#3F5E00] text-sm sm:text-base uppercase tracking-wider">${cat.category}</h3>
+                        <button onclick="toggleChecklistAddForm(${catIdx})" class="text-[11px] font-bold text-[#3F5E00] hover:underline">+ 항목 추가</button>
+                    </div>
+
+                    <div class="space-y-2 pl-1">
+                        ${cat.items.map((item, itemIdx) => {
+                            if (item.isEditing) {
+                                return `
+                                    <div class="flex items-center gap-2 py-1">
+                                        <input type="text" id="check-edit-input-${catIdx}-${itemIdx}" value="${item.text}" class="flex-1 p-1.5 text-xs rounded border border-slate-300 focus:outline-none">
+                                        <button onclick="saveEditChecklistItem(${catIdx}, ${itemIdx})" class="text-xs font-bold text-[#3F5E00]">저장</button>
+                                        <button onclick="cancelEditChecklistItem(${catIdx}, ${itemIdx})" class="text-xs text-slate-400">취소</button>
+                                    </div>
+                                `;
+                            }
+                            return `
+                                <div class="flex items-center justify-between group py-1">
+                                    <label class="flex items-center gap-3 cursor-pointer flex-1 min-w-0">
+                                        <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleChecklistItem(${catIdx}, ${itemIdx})" class="w-4 h-4 rounded shrink-0">
+                                        <span class="${item.checked ? 'line-through text-slate-400' : (item.isImportant ? 'font-bold text-rose-900/80' : 'text-slate-800')} text-xs sm:text-sm truncate">${item.text}</span>
+                                    </label>
+                                    <div class="flex items-center gap-2 text-[10px] text-slate-400 shrink-0 ml-2">
+                                        <button onclick="startEditChecklistItem(${catIdx}, ${itemIdx})" class="hover:text-slate-700 transition-colors">수정</button>
+                                        <span>•</span>
+                                        <button onclick="deleteChecklistItem(${catIdx}, ${itemIdx})" class="hover:text-rose-600 transition-colors">삭제</button>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+
+                    <div id="check-add-box-${catIdx}" class="hidden pt-1">
+                        <form onsubmit="addChecklistItem(event, ${catIdx})" class="flex gap-2">
+                            <input type="text" id="check-add-input-${catIdx}" placeholder="추가할 준비물 이름" class="flex-1 p-1.5 text-xs rounded-xl border border-slate-200 focus:outline-none">
+                            <button type="submit" class="px-3 py-1.5 text-xs font-bold bg-[#E5FF66]/80 text-slate-950 rounded-xl">추가</button>
+                            <button type="button" onclick="toggleChecklistAddForm(${catIdx})" class="text-xs text-slate-400">취소</button>
+                        </form>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleChecklistItem(catIdx, itemIdx) {
+            checklistData[catIdx].items[itemIdx].checked = !checklistData[catIdx].items[itemIdx].checked;
+            renderChecklist();
+        }
+
+        function startEditChecklistItem(catIdx, itemIdx) {
+            checklistData[catIdx].items[itemIdx].isEditing = true;
+            renderChecklist();
+        }
+
+        function cancelEditChecklistItem(catIdx, itemIdx) {
+            checklistData[catIdx].items[itemIdx].isEditing = false;
+            renderChecklist();
+        }
+
+        function saveEditChecklistItem(catIdx, itemIdx) {
+            const input = document.getElementById(`check-edit-input-${catIdx}-${itemIdx}`);
+            if (!input || !input.value.trim()) return;
+            checklistData[catIdx].items[itemIdx].text = input.value.trim();
+            checklistData[catIdx].items[itemIdx].isEditing = false;
+            renderChecklist();
+        }
+
+        function deleteChecklistItem(catIdx, itemIdx) {
+            checklistData[catIdx].items.splice(itemIdx, 1);
+            renderChecklist();
+        }
+
+        function toggleChecklistAddForm(catIdx) {
+            const box = document.getElementById(`check-add-box-${catIdx}`);
+            if (box) box.classList.toggle('hidden');
+        }
+
+        function addChecklistItem(e, catIdx) {
+            e.preventDefault();
+            const input = document.getElementById(`check-add-input-${catIdx}`);
+            if (!input || !input.value.trim()) return;
+            checklistData[catIdx].items.push({
+                id: Date.now(),
+                text: input.value.trim(),
+                checked: false,
+                isImportant: false,
+                isEditing: false
+            });
+            input.value = '';
+            toggleChecklistAddForm(catIdx);
+            renderChecklist();
+        }
+
+        // ==========================================
+        // 3. 먹방 코스 식단 & 통합 리스트 동적 연동 (Sync CRUD)
+        // ==========================================
+        let mealsData = [
+            {
+                id: 1,
+                dayTag: "DAY 1 점심",
+                timeTag: "⏱️ 피칭 후 10분 컷",
+                title: "차돌박이 비빔면 (5봉) & 군만두",
+                desc: "피칭 후 차가운 비빔면 5봉과 갓 구운 차돌박이, 대용량 군만두 조합.",
+                isOpen: false,
+                isEditing: false,
+                ingredients: [
+                    { id: 101, text: "팔도비빔면 5봉", isEditing: false },
+                    { id: 102, text: "냉동 차돌박이 400g", isEditing: false },
+                    { id: 103, text: "냉동 군만두 대용량", isEditing: false },
+                    { id: 104, text: "파채 + 식용유", isEditing: false }
+                ]
+            },
+            {
+                id: 2,
+                dayTag: "DAY 1 간식",
+                timeTag: "⏱️ 오후 4시 휴식",
+                title: "그리들 소시지 꼬치 & 콘치즈",
+                desc: "맥주 한 잔에 곁들이는 단짠 간식. (취향 및 상황에 따라 변경 가능)",
+                isOpen: false,
+                isEditing: false,
+                ingredients: [
+                    { id: 201, text: "수제 소시지 1팩", isEditing: false },
+                    { id: 202, text: "옥수수 콘 2캔", isEditing: false },
+                    { id: 203, text: "모짜렐라 치즈 200g", isEditing: false },
+                    { id: 204, text: "마요네즈/버터/설탕", isEditing: false }
+                ]
+            },
+            {
+                id: 3,
+                dayTag: "DAY 1 저녁",
+                timeTag: "⏱️ 메인 하이라이트",
+                title: "그리들 통삼겹/목살(1.2kg) & 김치찌개 + K-볶음밥",
+                desc: "돼지기름에 구운 묵은지, 남은 고기로 끓인 찌개와 피날레 치즈 볶음밥 코스.",
+                isOpen: false,
+                isEditing: false,
+                ingredients: [
+                    { id: 301, text: "삼겹/목살 1.2~1.5kg", isEditing: false },
+                    { id: 302, text: "묵은지 반포기", isEditing: false },
+                    { id: 303, text: "통마늘/쌈채소/쌈장", isEditing: false },
+                    { id: 304, text: "햇반 4개/치즈/김가루", isEditing: false }
+                ]
+            },
+            {
+                id: 4,
+                dayTag: "DAY 1 심야 안주",
+                timeTag: "⏱️ 심야 야외 영화",
+                title: "버터 먹태구이 & 얼큰 꼬치어묵탕",
+                desc: "바삭한 먹태와 청양마요 소스, 국물 어묵탕. (밀키트류로 자유롭게 변경 가능)",
+                isOpen: false,
+                isEditing: false,
+                ingredients: [
+                    { id: 401, text: "손질 먹태 2봉", isEditing: false },
+                    { id: 402, text: "마요네즈/청양고추/간장", isEditing: false },
+                    { id: 403, text: "꼬치어묵 밀키트 1봉", isEditing: false },
+                    { id: 404, text: "버터 2조각 + 주류", isEditing: false }
+                ]
+            },
+            {
+                id: 5,
+                dayTag: "DAY 2 아침",
+                timeTag: "⏱️ 철수 전 속풀이",
+                title: "해장 차돌 순두부 열라면 (4봉)",
+                desc: "남은 차돌박이와 순두부 2봉을 넣고 칼칼하게 숙취 완파하는 라면.",
+                isOpen: false,
+                isEditing: false,
+                ingredients: [
+                    { id: 501, text: "열라면 4봉", isEditing: false },
+                    { id: 502, text: "순두부 2봉 (800g)", isEditing: false },
+                    { id: 503, text: "남은 차돌박이 100g", isEditing: false },
+                    { id: 504, text: "계란 2개/청양고추/대파", isEditing: false }
+                ]
+            }
+        ];
+
+        function renderMeals() {
+            const container = document.getElementById('meals-list-container');
+            if (!container) return;
+
+            container.innerHTML = mealsData.map(meal => {
+                if (meal.isEditing) {
+                    return `
+                        <div class="space-y-3 bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200">
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="text" id="meal-edit-day-${meal.id}" value="${meal.dayTag}" placeholder="식단 태그" class="p-2 text-xs rounded-xl border border-slate-300">
+                                <input type="text" id="meal-edit-time-${meal.id}" value="${meal.timeTag}" placeholder="시간 태그" class="p-2 text-xs rounded-xl border border-slate-300">
+                            </div>
+                            <input type="text" id="meal-edit-title-${meal.id}" value="${meal.title}" placeholder="메뉴 제목" class="w-full p-2 text-xs sm:text-sm font-bold rounded-xl border border-slate-300">
+                            <textarea id="meal-edit-desc-${meal.id}" rows="2" placeholder="메뉴 설명" class="w-full p-2 text-xs sm:text-sm rounded-xl border border-slate-300">${meal.desc}</textarea>
+                            <div class="flex justify-end gap-2 text-xs">
+                                <button onclick="saveMealEdit(${meal.id})" class="px-3 py-1.5 font-bold text-[#3F5E00] bg-[#E5FF66]/80 rounded-lg">저장</button>
+                                <button onclick="cancelMealEdit(${meal.id})" class="px-3 py-1.5 text-slate-400">취소</button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                return `
+                    <div class="space-y-3 border-b border-slate-100 pb-6 last:border-none">
+                        <div class="flex items-start justify-between gap-2">
+                            <div class="space-y-1.5">
+                                <span class="text-[10px] font-bold text-slate-900 bg-slate-100 px-2.5 py-0.5 rounded inline-block">
+                                    ${meal.dayTag}
+                                </span>
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight leading-snug">
+                                    ${meal.title}
+                                </h3>
+                            </div>
+                            <div class="flex flex-col items-end gap-1.5 shrink-0">
+                                <span class="text-[11px] font-semibold text-slate-400 bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">
+                                    ${meal.timeTag}
+                                </span>
+                                <div class="flex items-center gap-2 text-[10px] text-slate-400">
+                                    <button onclick="startMealEdit(${meal.id})" class="hover:text-slate-700 transition-colors">수정</button>
+                                    <span>•</span>
+                                    <button onclick="deleteMeal(${meal.id})" class="hover:text-rose-600 transition-colors">삭제</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                            ${meal.desc}
+                        </p>
+
+                        <!-- Plain Text Toggle Trigger -->
+                        <button onclick="toggleMealIngredients(${meal.id})" class="flex items-center gap-1 text-xs font-bold text-[#3F5E00] hover:text-slate-900 transition-colors py-1">
+                            <span>재료 및 양념 목록</span>
+                            <span id="arrow-ing-${meal.id}" class="text-[10px] transition-transform duration-200 ${meal.isOpen ? 'rotate-180' : ''}">▾</span>
+                        </button>
+
+                        <!-- Collapsible Ingredient Area (Clean Auto-Responsive Grid with Sync Controls) -->
+                        <div id="ing-${meal.id}" class="ingredient-box ${meal.isOpen ? 'open' : ''}">
+                            <div class="py-2 px-0.5 space-y-3">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-xs sm:text-sm text-slate-800 font-medium">
+                                    ${meal.ingredients.map((ingObj, ingIdx) => {
+                                        const ingText = typeof ingObj === 'object' ? ingObj.text : ingObj;
+                                        const isEditing = typeof ingObj === 'object' && ingObj.isEditing;
+
+                                        if (isEditing) {
+                                            return `
+                                                <div class="flex items-center gap-1.5 bg-slate-50/80 p-1.5 rounded-xl border border-slate-200 col-span-1 sm:col-span-2">
+                                                    <input type="text" id="edit-meal-ing-input-${meal.id}-${ingIdx}" value="${ingText}" class="flex-1 p-1 text-xs rounded border border-slate-300 focus:outline-none">
+                                                    <button onclick="saveEditMealIngredient(${meal.id}, ${ingIdx})" class="text-[11px] font-bold text-[#3F5E00]">저장</button>
+                                                    <button onclick="cancelEditMealIngredient(${meal.id}, ${ingIdx})" class="text-[11px] text-slate-400">취소</button>
+                                                </div>
+                                            `;
+                                        }
+
+                                        return `
+                                            <div class="flex items-center justify-between bg-slate-50/80 p-2 rounded-xl border border-slate-100">
+                                                <span class="truncate">▪ ${ingText}</span>
+                                                <div class="flex items-center gap-1.5 text-[10px] text-slate-400 shrink-0 ml-1.5">
+                                                    <button onclick="startEditMealIngredient(${meal.id}, ${ingIdx})" class="hover:text-slate-700 transition-colors">수정</button>
+                                                    <span>•</span>
+                                                    <button onclick="deleteMealIngredient(${meal.id}, ${ingIdx})" class="hover:text-rose-600 transition-colors">✕</button>
+                                                </div>
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+
+                                <!-- Inline Form to Add Ingredient -->
+                                <form onsubmit="addMealIngredient(event, ${meal.id})" class="flex gap-2 pt-1">
+                                    <input type="text" id="add-ing-input-${meal.id}" placeholder="새 재료 추가 (예: 대파 1단)" class="flex-1 p-2 text-xs rounded-xl border border-slate-200 focus:outline-none">
+                                    <button type="submit" class="px-3 py-1.5 text-xs font-bold bg-[#E5FF66]/80 text-slate-950 rounded-xl hover:bg-[#E5FF66]">추가</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function toggleMealIngredients(id) {
+            mealsData = mealsData.map(m => m.id === id ? { ...m, isOpen: !m.isOpen } : m);
+            renderMeals();
+        }
+
+        function startMealEdit(id) {
+            mealsData = mealsData.map(m => m.id === id ? { ...m, isEditing: true } : m);
+            renderMeals();
+        }
+
+        function cancelMealEdit(id) {
+            mealsData = mealsData.map(m => m.id === id ? { ...m, isEditing: false } : m);
+            renderMeals();
+        }
+
+        function saveMealEdit(id) {
+            const dayInput = document.getElementById(`meal-edit-day-${id}`);
+            const timeInput = document.getElementById(`meal-edit-time-${id}`);
+            const titleInput = document.getElementById(`meal-edit-title-${id}`);
+            const descInput = document.getElementById(`meal-edit-desc-${id}`);
+
+            if (!titleInput || !titleInput.value.trim()) return;
+
+            mealsData = mealsData.map(m => m.id === id ? {
+                ...m,
+                dayTag: dayInput.value.trim() || m.dayTag,
+                timeTag: timeInput.value.trim() || m.timeTag,
+                title: titleInput.value.trim(),
+                desc: descInput.value.trim(),
+                isEditing: false
+            } : m);
+            renderMeals();
+        }
+
+        function deleteMeal(id) {
+            mealsData = mealsData.filter(m => m.id !== id);
+            renderMeals();
+        }
+
+        // --- 재료 단위 동적 연동 (Syncs to Shopping List) ---
+        function startEditMealIngredient(mealId, ingIdx) {
+            const meal = mealsData.find(m => m.id === mealId);
+            if (meal && meal.ingredients[ingIdx]) {
+                if (typeof meal.ingredients[ingIdx] === 'string') {
+                    meal.ingredients[ingIdx] = { id: Date.now(), text: meal.ingredients[ingIdx], isEditing: true };
+                } else {
+                    meal.ingredients[ingIdx].isEditing = true;
+                }
+                renderMeals();
+            }
+        }
+
+        function cancelEditMealIngredient(mealId, ingIdx) {
+            const meal = mealsData.find(m => m.id === mealId);
+            if (meal && meal.ingredients[ingIdx]) {
+                if (typeof meal.ingredients[ingIdx] === 'object') {
+                    meal.ingredients[ingIdx].isEditing = false;
+                }
+                renderMeals();
+            }
+        }
+
+        function saveEditMealIngredient(mealId, ingIdx) {
+            const input = document.getElementById(`edit-meal-ing-input-${mealId}-${ingIdx}`);
+            if (!input || !input.value.trim()) return;
+
+            const newText = input.value.trim();
+            const meal = mealsData.find(m => m.id === mealId);
+            if (meal && meal.ingredients[ingIdx]) {
+                const oldText = typeof meal.ingredients[ingIdx] === 'object' ? meal.ingredients[ingIdx].text : meal.ingredients[ingIdx];
+                
+                meal.ingredients[ingIdx] = { id: Date.now(), text: newText, isEditing: false };
+
+                // 통합 장보기 리스트 항목 연동 수정
+                shoppingList = shoppingList.map(s => s.text === oldText ? { ...s, text: newText } : s);
+
+                renderMeals();
+                renderShoppingList();
+            }
+        }
+
+        function deleteMealIngredient(mealId, ingIdx) {
+            const meal = mealsData.find(m => m.id === mealId);
+            if (meal) {
+                const deletedObj = meal.ingredients[ingIdx];
+                const deletedText = typeof deletedObj === 'object' ? deletedObj.text : deletedObj;
+                
+                meal.ingredients.splice(ingIdx, 1);
+
+                // 다른 식단에 해당 재료가 사용되는지 검증 후 미사용 시 통합 리스트에서 자동 삭제
+                const isStillUsed = mealsData.some(m => 
+                    m.ingredients.some(ing => (typeof ing === 'object' ? ing.text : ing) === deletedText)
+                );
+
+                if (!isStillUsed) {
+                    shoppingList = shoppingList.filter(s => s.text !== deletedText);
+                }
+
+                renderMeals();
+                renderShoppingList();
+            }
+        }
+
+        function addMealIngredient(e, mealId) {
+            e.preventDefault();
+            const input = document.getElementById(`add-ing-input-${mealId}`);
+            if (!input || !input.value.trim()) return;
+
+            const newText = input.value.trim();
+            const meal = mealsData.find(m => m.id === mealId);
+            if (meal) {
+                meal.ingredients.push({ id: Date.now(), text: newText, isEditing: false });
+                meal.isOpen = true;
+                input.value = '';
+
+                // 통합 장보기 리스트에 자동 추가 연동 (중복 방지)
+                const existsInShopping = shoppingList.some(s => s.text === newText);
+                if (!existsInShopping) {
+                    shoppingList.push({
+                        id: Date.now(),
+                        text: newText,
+                        price: 0,
+                        checked: false,
+                        isEditing: false
+                    });
+                }
+
+                renderMeals();
+                renderShoppingList();
+            }
+        }
+
+        function showAddMealForm() {
+            document.getElementById('add-meal-form-box').classList.remove('hidden');
+        }
+
+        function hideAddMealForm() {
+            document.getElementById('add-meal-form-box').classList.add('hidden');
+        }
+
+        function saveNewMeal() {
+            const day = document.getElementById('new-meal-day').value.trim();
+            const time = document.getElementById('new-meal-time').value.trim();
+            const title = document.getElementById('new-meal-title').value.trim();
+            const desc = document.getElementById('new-meal-desc').value.trim();
+
+            if (!title) return;
+
+            mealsData.push({
+                id: Date.now(),
+                dayTag: day || "DAY 1 식단",
+                timeTag: time || "⏱️ 시간 미정",
+                title: title,
+                desc: desc || "",
+                isOpen: true,
+                isEditing: false,
+                ingredients: []
+            });
+
+            document.getElementById('new-meal-day').value = '';
+            document.getElementById('new-meal-time').value = '';
+            document.getElementById('new-meal-title').value = '';
+            document.getElementById('new-meal-desc').value = '';
+            hideAddMealForm();
+            renderMeals();
+        }
+
+        // ==========================================
+        // 4. 구매 필요 식자재 통합 리스트 & N빵 실시간 계산기
+        // ==========================================
+        let shoppingList = [
+            { id: 1, text: '팔도비빔면 5봉', price: 4800, checked: false, isEditing: false },
+            { id: 2, text: '냉동 차돌박이 400g', price: 16500, checked: false, isEditing: false },
+            { id: 3, text: '냉동 군만두 대용량', price: 8900, checked: false, isEditing: false },
+            { id: 4, text: '파채 + 식용유', price: 3500, checked: false, isEditing: false },
+            { id: 5, text: '수제 소시지 1팩', price: 7900, checked: false, isEditing: false },
+            { id: 6, text: '옥수수 콘 2캔', price: 3200, checked: false, isEditing: false },
+            { id: 7, text: '모짜렐라 치즈 200g', price: 4500, checked: false, isEditing: false },
+            { id: 8, text: '마요네즈/버터/설탕', price: 4000, checked: false, isEditing: false },
+            { id: 9, text: '삼겹/목살 1.2~1.5kg', price: 38000, checked: false, isEditing: false },
+            { id: 10, text: '묵은지 반포기', price: 6000, checked: false, isEditing: false },
+            { id: 11, text: '통마늘/쌈채소/쌈장', price: 8000, checked: false, isEditing: false },
+            { id: 12, text: '햇반 4개/치즈/김가루', price: 6500, checked: false, isEditing: false },
+            { id: 13, text: '손질 먹태 2봉', price: 9000, checked: false, isEditing: false },
+            { id: 14, text: '마요네즈/청양고추/간장', price: 3000, checked: false, isEditing: false },
+            { id: 15, text: '꼬치어묵 밀키트 1봉', price: 7500, checked: false, isEditing: false },
+            { id: 16, text: '버터 2조각 + 주류', price: 20000, checked: false, isEditing: false },
+            { id: 17, text: '열라면 4봉', price: 3800, checked: false, isEditing: false },
+            { id: 18, text: '순두부 2봉 (800g)', price: 2400, checked: false, isEditing: false },
+            { id: 19, text: '남은 차돌박이 100g', price: 0, checked: false, isEditing: false },
+            { id: 20, text: '계란 2개/청양고추/대파', price: 3000, checked: false, isEditing: false }
+        ];
+
+        function renderShoppingList() {
+            const container = document.getElementById('shopping-items-container');
+            if (!container) return;
+
+            if (shoppingList.length === 0) {
+                container.innerHTML = '<p class="text-xs text-slate-400 py-2">등록된 장보기 항목이 없습니다.</p>';
+                updateTotals(0);
+                return;
+            }
+
+            const checkedTotal = shoppingList
+                .filter(item => item.checked)
+                .reduce((sum, item) => sum + (Number(item.price) || 0), 0);
+
+            container.innerHTML = shoppingList.map(item => {
+                if (item.isEditing) {
+                    return `
+                        <div class="flex items-center gap-2 py-1.5 border-b border-slate-100">
+                            <input type="text" id="edit-shop-name-${item.id}" value="${item.text}" class="flex-1 p-1.5 text-xs rounded border border-slate-300 focus:outline-none">
+                            <input type="number" id="edit-shop-price-${item.id}" value="${item.price}" placeholder="가격" class="w-20 p-1.5 text-xs rounded border border-slate-300 focus:outline-none">
+                            <button onclick="saveEditShoppingItem(${item.id})" class="text-xs font-bold text-[#3F5E00]">저장</button>
+                            <button onclick="cancelEditShoppingItem(${item.id})" class="text-xs text-slate-400">취소</button>
+                        </div>
+                    `;
+                }
+
+                const formattedPrice = item.price ? Number(item.price).toLocaleString() + '원' : '가격 미정';
+
+                return `
+                    <div class="flex items-center justify-between py-1.5 border-b border-slate-100/80 last:border-none">
+                        <label class="flex items-center gap-2.5 cursor-pointer flex-1 min-w-0">
+                            <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleShoppingCheck(${item.id})" class="w-4 h-4 rounded shrink-0">
+                            <span class="text-xs sm:text-sm ${item.checked ? 'line-through text-slate-400' : 'text-slate-800'} truncate">${item.text}</span>
+                            <span class="text-[11px] font-semibold ${item.checked ? 'line-through text-slate-300' : 'text-[#3F5E00]'} shrink-0">(${formattedPrice})</span>
+                        </label>
+                        <div class="flex items-center gap-2 text-[10px] text-slate-400 shrink-0 ml-2">
+                            <button onclick="startEditShoppingItem(${item.id})" class="hover:text-slate-700 transition-colors">수정</button>
+                            <span>•</span>
+                            <button onclick="deleteShoppingItem(${item.id})" class="hover:text-rose-600 transition-colors">삭제</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            updateTotals(checkedTotal);
+        }
+
+        function updateTotals(checkedTotal) {
+            const totalPriceEl = document.getElementById('total-price-display');
+            const perPersonPriceEl = document.getElementById('per-person-price-display');
+
+            if (totalPriceEl) totalPriceEl.innerText = `${checkedTotal.toLocaleString()} 원`;
+            if (perPersonPriceEl) {
+                const perPerson = Math.round(checkedTotal / 4);
+                perPersonPriceEl.innerText = `${perPerson.toLocaleString()} 원`;
+            }
+        }
+
+        function addShoppingItem(e) {
+            e.preventDefault();
+            const input = document.getElementById('shopping-input');
+            const priceInput = document.getElementById('shopping-price-input');
+            if (!input || !input.value.trim()) return;
+
+            shoppingList.push({
+                id: Date.now(),
+                text: input.value.trim(),
+                price: Number(priceInput.value) || 0,
+                checked: false,
+                isEditing: false
+            });
+            input.value = '';
+            priceInput.value = '';
+            renderShoppingList();
+        }
+
+        function toggleShoppingCheck(id) {
+            shoppingList = shoppingList.map(item => item.id === id ? { ...item, checked: !item.checked } : item);
+            renderShoppingList();
+        }
+
+        function deleteShoppingItem(id) {
+            shoppingList = shoppingList.filter(item => item.id !== id);
+            renderShoppingList();
+        }
+
+        function startEditShoppingItem(id) {
+            shoppingList = shoppingList.map(item => item.id === id ? { ...item, isEditing: true } : item);
+            renderShoppingList();
+        }
+
+        function cancelEditShoppingItem(id) {
+            shoppingList = shoppingList.map(item => item.id === id ? { ...item, isEditing: false } : item);
+            renderShoppingList();
+        }
+
+        function saveEditShoppingItem(id) {
+            const nameInput = document.getElementById(`edit-shop-name-${id}`);
+            const priceInput = document.getElementById(`edit-shop-price-${id}`);
+            if (!nameInput || !nameInput.value.trim()) return;
+
+            shoppingList = shoppingList.map(item => item.id === id ? { 
+                ...item, 
+                text: nameInput.value.trim(), 
+                price: Number(priceInput.value) || 0,
+                isEditing: false 
+            } : item);
+            renderShoppingList();
+        }
+
+        // ==========================================
+        // 5. 자유 의견 게시판 (CRUD)
+        // ==========================================
+        let comments = [
+            { id: 1, author: '관리자', text: '추가하고 싶은 항목이나 의견은 자유롭게 남겨주세요!', time: '공지', isNotice: true, isEditing: false }
+        ];
+
+        function renderComments() {
+            const list = document.getElementById('comment-list');
+            if (!list) return;
+
+            if (comments.length === 0) {
+                list.innerHTML = '<p class="text-xs text-slate-400 text-center py-4">등록된 의견이 없습니다. 첫 의견을 남겨보세요!</p>';
+                return;
+            }
+
+            list.innerHTML = comments.map(c => {
+                if (c.isEditing) {
+                    return `
+                        <div class="py-3 space-y-2 border-b border-slate-100 last:border-none">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-bold text-slate-900">${c.author} <span class="font-normal text-slate-400 text-[10px]">(수정 중)</span></span>
+                            </div>
+                            <input type="text" id="edit-input-${c.id}" value="${c.text}" class="w-full p-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:outline-none">
+                            <div class="flex justify-end gap-2 text-[11px]">
+                                <button onclick="saveEditComment(${c.id})" class="font-bold text-[#3F5E00] hover:underline">저장</button>
+                                <button onclick="cancelEditComment(${c.id})" class="text-slate-400">취소</button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                return `
+                    <div class="py-2.5 space-y-1 border-b border-slate-100/80 last:border-none">
+                        <div class="flex justify-between items-center text-xs">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-slate-900">${c.author}</span>
+                                <span class="text-[10px] text-slate-400">${c.time}</span>
+                            </div>
+                            ${!c.isNotice ? `
+                                <div class="flex items-center gap-2 text-[10px] text-slate-400">
+                                    <button onclick="startEditComment(${c.id})" class="hover:text-slate-700 transition-colors">수정</button>
+                                    <span>•</span>
+                                    <button onclick="deleteComment(${c.id})" class="hover:text-rose-600 transition-colors">삭제</button>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${c.text}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function addComment(e) {
+            e.preventDefault();
+            const authorInput = document.getElementById('comment-author');
+            const textInput = document.getElementById('comment-text');
+            if (!authorInput.value.trim() || !textInput.value.trim()) return;
+            
+            comments.unshift({
+                id: Date.now(),
+                author: authorInput.value.trim(),
+                text: textInput.value.trim(),
+                time: '방금 전',
+                isNotice: false,
+                isEditing: false
+            });
+            authorInput.value = '';
+            textInput.value = '';
+            renderComments();
+        }
+
+        function deleteComment(id) {
+            comments = comments.filter(c => c.id !== id);
+            renderComments();
+        }
+
+        function startEditComment(id) {
+            comments = comments.map(c => c.id === id ? { ...c, isEditing: true } : c);
+            renderComments();
+        }
+
+        function cancelEditComment(id) {
+            comments = comments.map(c => c.id === id ? { ...c, isEditing: false } : c);
+            renderComments();
+        }
+
+        function saveEditComment(id) {
+            const input = document.getElementById(`edit-input-${id}`);
+            if (!input || !input.value.trim()) return;
+
+            comments = comments.map(c => c.id === id ? { ...c, text: input.value.trim(), isEditing: false } : c);
+            renderComments();
+        }
+
+        // 초기화 렌더링
+        document.addEventListener('DOMContentLoaded', () => {
+            renderChecklist();
+            renderMeals();
+            renderShoppingList();
+            renderComments();
+        });
+    </script>
+</body>
+</html>
