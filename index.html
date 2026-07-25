@@ -264,7 +264,7 @@
                 <div class="space-y-1.5">
                     <span class="text-[11px] font-bold text-[#3F5E00] uppercase tracking-wider block">Equipment Checklist</span>
                     <h2 class="text-2xl font-bold text-slate-900 tracking-tight">4인 노지 필수 장비</h2>
-                    <p class="text-xs sm:text-sm text-slate-400">자갈밭 노지 환경 기준 4인 정량 세팅 (실시간 공유)</p>
+                    <p class="text-xs sm:text-sm text-slate-400">자갈밭 노지 환경 기준 4인 정량 세팅 (실시간 수정 & 공유)</p>
                 </div>
                 <div id="checklist-container" class="space-y-8 text-xs sm:text-sm"></div>
             </section>
@@ -277,29 +277,70 @@
                     <div class="space-y-1.5">
                         <span class="text-[11px] font-bold text-[#3F5E00] uppercase tracking-wider block">Meal Schedule</span>
                         <h2 class="text-2xl font-bold text-slate-900 tracking-tight">4인 먹방 코스 식단</h2>
-                        <p class="text-xs sm:text-sm text-slate-400">성인 남성 4인 기준 정량 세팅 코스 (편집 실시간 동기화)</p>
+                        <p class="text-xs sm:text-sm text-slate-400">성인 남성 4인 기준 정량 세팅 코스 (식단 및 재료 편집 지원)</p>
                     </div>
                     <button onclick="showAddMealForm()" class="px-3 py-1.5 text-xs font-bold bg-[#E5FF66]/80 hover:bg-[#E5FF66] text-slate-950 rounded-xl transition-all duration-200 shadow-sm shrink-0">
                         + 식단 추가
                     </button>
                 </div>
 
+                <!-- 새 식단 등록 폼 (드롭다운 적용) -->
                 <div id="add-meal-form-box" class="hidden bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
                     <h4 class="font-bold text-xs sm:text-sm text-slate-900">새 식단 코스 등록</h4>
                     <div class="grid grid-cols-2 gap-2">
-                        <input type="text" id="new-meal-day" placeholder="식단 태그 (예: DAY 2 점심)" class="p-2 text-xs rounded-xl border border-slate-200">
-                        <input type="text" id="new-meal-time" placeholder="시간 태그 (예: ⏱️ 오후 1시)" class="p-2 text-xs rounded-xl border border-slate-200">
+                        <div>
+                            <label class="block text-[10px] text-slate-500 font-bold mb-1">식단 태그</label>
+                            <select id="new-meal-day" class="w-full p-2 text-xs rounded-xl border border-slate-200 bg-white focus:outline-none">
+                                <option value="DAY 1 아침">DAY 1 아침</option>
+                                <option value="DAY 1 점심" selected>DAY 1 점심</option>
+                                <option value="DAY 1 저녁">DAY 1 저녁</option>
+                                <option value="DAY 1 간식">DAY 1 간식</option>
+                                <option value="DAY 1 야식">DAY 1 야식</option>
+                                <option value="DAY 2 아침">DAY 2 아침</option>
+                                <option value="DAY 2 점심">DAY 2 점심</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-slate-500 font-bold mb-1">시간 태그</label>
+                            <select id="new-meal-time" class="w-full p-2 text-xs rounded-xl border border-slate-200 bg-white focus:outline-none">
+                                <option value="⏱️ 06:00">⏱️ 06:00</option>
+                                <option value="⏱️ 07:00">⏱️ 07:00</option>
+                                <option value="⏱️ 08:00">⏱️ 08:00</option>
+                                <option value="⏱️ 09:00">⏱️ 09:00</option>
+                                <option value="⏱️ 10:00">⏱️ 10:00</option>
+                                <option value="⏱️ 11:00">⏱️ 11:00</option>
+                                <option value="⏱️ 12:00" selected>⏱️ 12:00</option>
+                                <option value="⏱️ 13:00">⏱️ 13:00</option>
+                                <option value="⏱️ 14:00">⏱️ 14:00</option>
+                                <option value="⏱️ 15:00">⏱️ 15:00</option>
+                                <option value="⏱️ 16:00">⏱️ 16:00</option>
+                                <option value="⏱️ 17:00">⏱️ 17:00</option>
+                                <option value="⏱️ 18:00">⏱️ 18:00</option>
+                                <option value="⏱️ 19:00">⏱️ 19:00</option>
+                                <option value="⏱️ 20:00">⏱️ 20:00</option>
+                                <option value="⏱️ 21:00">⏱️ 21:00</option>
+                                <option value="⏱️ 22:00">⏱️ 22:00</option>
+                                <option value="⏱️ 23:00">⏱️ 23:00</option>
+                                <option value="⏱️ 00:00">⏱️ 00:00</option>
+                                <option value="⏱️ 01:00">⏱️ 01:00</option>
+                                <option value="⏱️ 02:00">⏱️ 02:00</option>
+                                <option value="⏱️ 03:00">⏱️ 03:00</option>
+                                <option value="⏱️ 04:00">⏱️ 04:00</option>
+                                <option value="⏱️ 05:00">⏱️ 05:00</option>
+                            </select>
+                        </div>
                     </div>
-                    <input type="text" id="new-meal-title" placeholder="메뉴 제목" class="w-full p-2 text-xs sm:text-sm rounded-xl border border-slate-200">
-                    <textarea id="new-meal-desc" rows="2" placeholder="메뉴 설명" class="w-full p-2 text-xs sm:text-sm rounded-xl border border-slate-200"></textarea>
+                    <input type="text" id="new-meal-title" placeholder="메뉴 제목" class="w-full p-2 text-xs sm:text-sm rounded-xl border border-slate-200 focus:outline-none">
+                    <textarea id="new-meal-desc" rows="2" placeholder="메뉴 설명" class="w-full p-2 text-xs sm:text-sm rounded-xl border border-slate-200 focus:outline-none"></textarea>
                     <div class="flex justify-end gap-2 text-xs">
-                        <button onclick="saveNewMeal()" class="px-3 py-1.5 font-bold bg-[#E5FF66]/80 text-slate-950 rounded-lg">등록</button>
+                        <button onclick="saveNewMeal()" class="px-3 py-1.5 font-bold bg-[#E5FF66]/80 text-slate-950 rounded-lg hover:bg-[#E5FF66]">등록</button>
                         <button onclick="hideAddMealForm()" class="px-3 py-1.5 text-slate-400">취소</button>
                     </div>
                 </div>
 
                 <div id="meals-list-container" class="space-y-8 pt-2"></div>
 
+                <!-- 구매 필요 식자재 통합 리스트 & N빵 실시간 계산기 -->
                 <div class="space-y-3 pt-4 border-t border-slate-100">
                     <div class="flex items-center justify-between">
                         <div class="space-y-1">
@@ -388,6 +429,19 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
+        // 선택식 태그 상수 배열
+        const DAY_TAG_OPTIONS = [
+            "DAY 1 아침", "DAY 1 점심", "DAY 1 저녁", "DAY 1 간식", "DAY 1 야식",
+            "DAY 2 아침", "DAY 2 점심"
+        ];
+
+        const TIME_TAG_OPTIONS = [
+            "⏱️ 06:00", "⏱️ 07:00", "⏱️ 08:00", "⏱️ 09:00", "⏱️ 10:00", "⏱️ 11:00",
+            "⏱️ 12:00", "⏱️ 13:00", "⏱️ 14:00", "⏱️ 15:00", "⏱️ 16:00", "⏱️ 17:00",
+            "⏱️ 18:00", "⏱️ 19:00", "⏱️ 20:00", "⏱️ 21:00", "⏱️ 22:00", "⏱️ 23:00",
+            "⏱️ 00:00", "⏱️ 01:00", "⏱️ 02:00", "⏱️ 03:00", "⏱️ 04:00", "⏱️ 05:00"
+        ];
+
         const tabData = {
             spot: { label: '스팟 분석', icon: '📍' },
             v2l: { label: 'V2L 활용', icon: '⚡' },
@@ -424,7 +478,9 @@
             }
         }
 
-        // A. 준비물 DB 연동
+        // ==========================================
+        // A. 준비물 DB 연동 (수정/삭제 가능)
+        // ==========================================
         let checklistData = [];
         db.ref('checklistData').on('value', (snapshot) => {
             const data = snapshot.val();
@@ -442,7 +498,9 @@
             renderChecklist();
         });
 
-        function saveChecklistToDB() { db.ref('checklistData').set(checklistData); }
+        function saveChecklistToDB() { 
+            db.ref('checklistData').set(checklistData); 
+        }
 
         function renderChecklist() {
             const container = document.getElementById('checklist-container');
@@ -454,19 +512,34 @@
                         <button onclick="toggleChecklistAddForm(${catIdx})" class="text-[11px] font-bold text-[#3F5E00] hover:underline">+ 항목 추가</button>
                     </div>
                     <div class="space-y-2 pl-1">
-                        ${cat.items ? cat.items.map((item, itemIdx) => `
-                            <div class="flex items-center justify-between group py-1">
-                                <label class="flex items-center gap-3 cursor-pointer flex-1 min-w-0">
-                                    <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleChecklistItem(${catIdx}, ${itemIdx})" class="w-4 h-4 rounded shrink-0">
-                                    <span class="${item.checked ? 'line-through text-slate-400' : (item.isImportant ? 'font-bold text-rose-900/80' : 'text-slate-800')} text-xs sm:text-sm truncate">${item.text}</span>
-                                </label>
-                                <button onclick="deleteChecklistItem(${catIdx}, ${itemIdx})" class="text-[10px] text-slate-400 hover:text-rose-600 shrink-0 ml-2">삭제</button>
-                            </div>
-                        `).join('') : ''}
+                        ${cat.items ? cat.items.map((item, itemIdx) => {
+                            if (item.isEditing) {
+                                return `
+                                    <div class="flex items-center gap-2 py-1">
+                                        <input type="text" id="check-edit-input-${catIdx}-${itemIdx}" value="${item.text}" class="flex-1 p-1.5 text-xs rounded border border-slate-300 focus:outline-none">
+                                        <button onclick="saveEditChecklistItem(${catIdx}, ${itemIdx})" class="text-xs font-bold text-[#3F5E00]">저장</button>
+                                        <button onclick="cancelEditChecklistItem(${catIdx}, ${itemIdx})" class="text-xs text-slate-400">취소</button>
+                                    </div>
+                                `;
+                            }
+                            return `
+                                <div class="flex items-center justify-between group py-1">
+                                    <label class="flex items-center gap-3 cursor-pointer flex-1 min-w-0">
+                                        <input type="checkbox" ${item.checked ? 'checked' : ''} onchange="toggleChecklistItem(${catIdx}, ${itemIdx})" class="w-4 h-4 rounded shrink-0">
+                                        <span class="${item.checked ? 'line-through text-slate-400' : (item.isImportant ? 'font-bold text-rose-900/80' : 'text-slate-800')} text-xs sm:text-sm truncate">${item.text}</span>
+                                    </label>
+                                    <div class="flex items-center gap-2 text-[10px] text-slate-400 shrink-0 ml-2">
+                                        <button onclick="startEditChecklistItem(${catIdx}, ${itemIdx})" class="hover:text-slate-700 transition-colors">수정</button>
+                                        <span>•</span>
+                                        <button onclick="deleteChecklistItem(${catIdx}, ${itemIdx})" class="hover:text-rose-600 transition-colors">삭제</button>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('') : ''}
                     </div>
                     <div id="check-add-box-${catIdx}" class="hidden pt-1">
                         <form onsubmit="addChecklistItem(event, ${catIdx})" class="flex gap-2">
-                            <input type="text" id="check-add-input-${catIdx}" placeholder="추가할 준비물 이름" class="flex-1 p-1.5 text-xs rounded-xl border border-slate-200">
+                            <input type="text" id="check-add-input-${catIdx}" placeholder="추가할 준비물 이름" class="flex-1 p-1.5 text-xs rounded-xl border border-slate-200 focus:outline-none">
                             <button type="submit" class="px-3 py-1.5 text-xs font-bold bg-[#E5FF66]/80 text-slate-950 rounded-xl">추가</button>
                         </form>
                     </div>
@@ -476,6 +549,21 @@
 
         function toggleChecklistItem(catIdx, itemIdx) {
             checklistData[catIdx].items[itemIdx].checked = !checklistData[catIdx].items[itemIdx].checked;
+            saveChecklistToDB();
+        }
+        function startEditChecklistItem(catIdx, itemIdx) {
+            checklistData[catIdx].items[itemIdx].isEditing = true;
+            renderChecklist();
+        }
+        function cancelEditChecklistItem(catIdx, itemIdx) {
+            checklistData[catIdx].items[itemIdx].isEditing = false;
+            renderChecklist();
+        }
+        function saveEditChecklistItem(catIdx, itemIdx) {
+            const input = document.getElementById(`check-edit-input-${catIdx}-${itemIdx}`);
+            if (!input || !input.value.trim()) return;
+            checklistData[catIdx].items[itemIdx].text = input.value.trim();
+            checklistData[catIdx].items[itemIdx].isEditing = false;
             saveChecklistToDB();
         }
         function deleteChecklistItem(catIdx, itemIdx) {
@@ -488,82 +576,213 @@
             const input = document.getElementById(`check-add-input-${catIdx}`);
             if (!input || !input.value.trim()) return;
             if(!checklistData[catIdx].items) checklistData[catIdx].items = [];
-            checklistData[catIdx].items.push({ id: Date.now(), text: input.value.trim(), checked: false });
+            checklistData[catIdx].items.push({ id: Date.now(), text: input.value.trim(), checked: false, isEditing: false });
             input.value = '';
             toggleChecklistAddForm(catIdx);
             saveChecklistToDB();
         }
 
-        // B. 먹방 코스 DB 연동
+        // ==========================================
+        // B. 먹방 코스 DB 연동 (선택식 태그 + 수정/삭제)
+        // ==========================================
         let mealsData = [];
+
+        function getIngText(ing) {
+            return typeof ing === 'object' && ing !== null ? ing.text : ing;
+        }
+        function isIngEditing(ing) {
+            return typeof ing === 'object' && ing !== null ? !!ing.isEditing : false;
+        }
+
         db.ref('mealsData').on('value', (snapshot) => {
             const data = snapshot.val();
             if (data) {
                 mealsData = data;
             } else {
                 mealsData = [
-                    { id: 1, dayTag: "DAY 1 점심", timeTag: "⏱️ 피칭 후 10분 컷", title: "차돌박이 비빔면 (5봉) & 군만두", desc: "피칭 후 차가운 비빔면과 갓 구운 차돌박이 조합.", isOpen: false, ingredients: ["팔도비빔면 5봉", "냉동 차돌박이 400g", "냉동 군만두 대용량", "파채 + 식용유"] },
-                    { id: 2, dayTag: "DAY 1 간식", timeTag: "⏱️ 오후 4시 휴식", title: "그리들 소시지 꼬치 & 콘치즈", desc: "맥주 한 잔에 곁들이는 단짠 간식.", isOpen: false, ingredients: ["수제 소시지 1팩", "옥수수 콘 2캔", "모짜렐라 치즈 200g"] }
+                    { id: 1, dayTag: "DAY 1 점심", timeTag: "⏱️ 12:00", title: "차돌박이 비빔면 (5봉) & 군만두", desc: "피칭 후 차가운 비빔면과 갓 구운 차돌박이 조합.", isOpen: false, ingredients: ["팔도비빔면 5봉", "냉동 차돌박이 400g", "냉동 군만두 대용량", "파채 + 식용유"] },
+                    { id: 2, dayTag: "DAY 1 간식", timeTag: "⏱️ 16:00", title: "그리들 소시지 꼬치 & 콘치즈", desc: "맥주 한 잔에 곁들이는 단짠 간식.", isOpen: false, ingredients: ["수제 소시지 1팩", "옥수수 콘 2캔", "모짜렐라 치즈 200g"] }
                 ];
                 db.ref('mealsData').set(mealsData);
             }
             renderMeals();
         });
 
-        function saveMealsToDB() { db.ref('mealsData').set(mealsData); }
+        function saveMealsToDB() { 
+            db.ref('mealsData').set(mealsData); 
+        }
 
         function renderMeals() {
             const container = document.getElementById('meals-list-container');
             if (!container) return;
-            container.innerHTML = mealsData.map(meal => `
-                <div class="space-y-3 border-b border-slate-100 pb-6 last:border-none">
-                    <div class="flex items-start justify-between gap-2">
-                        <div class="space-y-1.5">
-                            <span class="text-[10px] font-bold text-slate-900 bg-slate-100 px-2.5 py-0.5 rounded inline-block">${meal.dayTag}</span>
-                            <h3 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight leading-snug">${meal.title}</h3>
-                        </div>
-                        <div class="flex flex-col items-end gap-1.5 shrink-0">
-                            <span class="text-[11px] font-semibold text-slate-400 bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">${meal.timeTag}</span>
-                            <button onclick="deleteMeal(${meal.id})" class="text-[10px] text-slate-400 hover:text-rose-600">삭제</button>
-                        </div>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">${meal.desc}</p>
-                    <button onclick="toggleMealIngredients(${meal.id})" class="flex items-center gap-1 text-xs font-bold text-[#3F5E00] py-1">
-                        <span>재료 및 양념 목록</span>
-                        <span class="text-[10px] transition-transform duration-200 ${meal.isOpen ? 'rotate-180' : ''}">▾</span>
-                    </button>
-                    <div class="ingredient-box ${meal.isOpen ? 'open' : ''}">
-                        <div class="py-2 space-y-3">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-xs text-slate-800 font-medium">
-                                ${meal.ingredients ? meal.ingredients.map((ing, ingIdx) => `
-                                    <div class="flex items-center justify-between bg-slate-50/80 p-2 rounded-xl border border-slate-100">
-                                        <span class="truncate">▪ ${ing}</span>
-                                        <button onclick="deleteMealIngredient(${meal.id}, ${ingIdx})" class="text-[10px] text-slate-300 hover:text-rose-600 ml-1.5">✕</button>
-                                    </div>
-                                `).join('') : ''}
+            container.innerHTML = mealsData.map(meal => {
+                if (meal.isEditing) {
+                    return `
+                        <div class="space-y-3 bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200">
+                            <div class="grid grid-cols-2 gap-2">
+                                <select id="meal-edit-day-${meal.id}" class="p-2 text-xs rounded-xl border border-slate-300 bg-white">
+                                    ${DAY_TAG_OPTIONS.map(d => `<option value="${d}" ${meal.dayTag === d ? 'selected' : ''}>${d}</option>`).join('')}
+                                </select>
+                                <select id="meal-edit-time-${meal.id}" class="p-2 text-xs rounded-xl border border-slate-300 bg-white">
+                                    ${TIME_TAG_OPTIONS.map(t => `<option value="${t}" ${meal.timeTag === t ? 'selected' : ''}>${t}</option>`).join('')}
+                                </select>
                             </div>
-                            <form onsubmit="addMealIngredient(event, ${meal.id})" class="flex gap-2 pt-1">
-                                <input type="text" id="add-ing-input-${meal.id}" placeholder="새 재료 추가" class="flex-1 p-2 text-xs rounded-xl border border-slate-200">
-                                <button type="submit" class="px-3 py-1.5 text-xs font-bold bg-[#E5FF66]/80 text-slate-950 rounded-xl">추가</button>
-                            </form>
+                            <input type="text" id="meal-edit-title-${meal.id}" value="${meal.title}" placeholder="메뉴 제목" class="w-full p-2 text-xs sm:text-sm font-bold rounded-xl border border-slate-300">
+                            <textarea id="meal-edit-desc-${meal.id}" rows="2" placeholder="메뉴 설명" class="w-full p-2 text-xs sm:text-sm rounded-xl border border-slate-300">${meal.desc || ''}</textarea>
+                            <div class="flex justify-end gap-2 text-xs">
+                                <button onclick="saveMealEdit(${meal.id})" class="px-3 py-1.5 font-bold text-[#3F5E00] bg-[#E5FF66]/80 rounded-lg">저장</button>
+                                <button onclick="cancelMealEdit(${meal.id})" class="px-3 py-1.5 text-slate-400">취소</button>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                return `
+                    <div class="space-y-3 border-b border-slate-100 pb-6 last:border-none">
+                        <div class="flex items-start justify-between gap-2">
+                            <div class="space-y-1.5">
+                                <span class="text-[10px] font-bold text-slate-900 bg-slate-100 px-2.5 py-0.5 rounded inline-block">${meal.dayTag}</span>
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 tracking-tight leading-snug">${meal.title}</h3>
+                            </div>
+                            <div class="flex flex-col items-end gap-1.5 shrink-0">
+                                <span class="text-[11px] font-semibold text-slate-400 bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">${meal.timeTag}</span>
+                                <div class="flex items-center gap-2 text-[10px] text-slate-400">
+                                    <button onclick="startMealEdit(${meal.id})" class="hover:text-slate-700 transition-colors">수정</button>
+                                    <span>•</span>
+                                    <button onclick="deleteMeal(${meal.id})" class="hover:text-rose-600 transition-colors">삭제</button>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">${meal.desc}</p>
+                        <button onclick="toggleMealIngredients(${meal.id})" class="flex items-center gap-1 text-xs font-bold text-[#3F5E00] py-1">
+                            <span>재료 및 양념 목록</span>
+                            <span class="text-[10px] transition-transform duration-200 ${meal.isOpen ? 'rotate-180' : ''}">▾</span>
+                        </button>
+                        <div class="ingredient-box ${meal.isOpen ? 'open' : ''}">
+                            <div class="py-2 space-y-3">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-xs text-slate-800 font-medium">
+                                    ${meal.ingredients ? meal.ingredients.map((ingObj, ingIdx) => {
+                                        const ingText = getIngText(ingObj);
+                                        const isEditing = isIngEditing(ingObj);
+
+                                        if (isEditing) {
+                                            return `
+                                                <div class="flex items-center gap-1.5 bg-slate-50/80 p-1.5 rounded-xl border border-slate-200 col-span-1 sm:col-span-2">
+                                                    <input type="text" id="edit-meal-ing-input-${meal.id}-${ingIdx}" value="${ingText}" class="flex-1 p-1 text-xs rounded border border-slate-300 focus:outline-none">
+                                                    <button onclick="saveEditMealIngredient(${meal.id}, ${ingIdx})" class="text-[11px] font-bold text-[#3F5E00]">저장</button>
+                                                    <button onclick="cancelEditMealIngredient(${meal.id}, ${ingIdx})" class="text-[11px] text-slate-400">취소</button>
+                                                </div>
+                                            `;
+                                        }
+
+                                        return `
+                                            <div class="flex items-center justify-between bg-slate-50/80 p-2 rounded-xl border border-slate-100">
+                                                <span class="truncate">▪ ${ingText}</span>
+                                                <div class="flex items-center gap-1.5 text-[10px] text-slate-400 shrink-0 ml-1.5">
+                                                    <button onclick="startEditMealIngredient(${meal.id}, ${ingIdx})" class="hover:text-slate-700 transition-colors">수정</button>
+                                                    <span>•</span>
+                                                    <button onclick="deleteMealIngredient(${meal.id}, ${ingIdx})" class="hover:text-rose-600 transition-colors">✕</button>
+                                                </div>
+                                            </div>
+                                        `;
+                                    }).join('') : ''}
+                                </div>
+                                <form onsubmit="addMealIngredient(event, ${meal.id})" class="flex gap-2 pt-1">
+                                    <input type="text" id="add-ing-input-${meal.id}" placeholder="새 재료 추가" class="flex-1 p-2 text-xs rounded-xl border border-slate-200 focus:outline-none">
+                                    <button type="submit" class="px-3 py-1.5 text-xs font-bold bg-[#E5FF66]/80 text-slate-950 rounded-xl">추가</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function toggleMealIngredients(id) {
             mealsData = mealsData.map(m => m.id === id ? { ...m, isOpen: !m.isOpen } : m);
             renderMeals();
         }
+        function startMealEdit(id) {
+            mealsData = mealsData.map(m => m.id === id ? { ...m, isEditing: true } : m);
+            renderMeals();
+        }
+        function cancelMealEdit(id) {
+            mealsData = mealsData.map(m => m.id === id ? { ...m, isEditing: false } : m);
+            renderMeals();
+        }
+        function saveMealEdit(id) {
+            const daySelect = document.getElementById(`meal-edit-day-${id}`);
+            const timeSelect = document.getElementById(`meal-edit-time-${id}`);
+            const titleInput = document.getElementById(`meal-edit-title-${id}`);
+            const descInput = document.getElementById(`meal-edit-desc-${id}`);
+
+            if (!titleInput || !titleInput.value.trim()) return;
+
+            mealsData = mealsData.map(m => m.id === id ? {
+                ...m,
+                dayTag: daySelect ? daySelect.value : m.dayTag,
+                timeTag: timeSelect ? timeSelect.value : m.timeTag,
+                title: titleInput.value.trim(),
+                desc: descInput ? descInput.value.trim() : m.desc,
+                isEditing: false
+            } : m);
+            saveMealsToDB();
+        }
         function deleteMeal(id) {
             mealsData = mealsData.filter(m => m.id !== id);
             saveMealsToDB();
         }
+
+        // 재료 수정 기능
+        function startEditMealIngredient(mealId, ingIdx) {
+            const meal = mealsData.find(m => m.id === mealId);
+            if (meal && meal.ingredients && meal.ingredients[ingIdx] !== undefined) {
+                const text = getIngText(meal.ingredients[ingIdx]);
+                meal.ingredients[ingIdx] = { id: Date.now(), text: text, isEditing: true };
+                renderMeals();
+            }
+        }
+        function cancelEditMealIngredient(mealId, ingIdx) {
+            const meal = mealsData.find(m => m.id === mealId);
+            if (meal && meal.ingredients && meal.ingredients[ingIdx] !== undefined) {
+                const text = getIngText(meal.ingredients[ingIdx]);
+                meal.ingredients[ingIdx] = text;
+                renderMeals();
+            }
+        }
+        function saveEditMealIngredient(mealId, ingIdx) {
+            const input = document.getElementById(`edit-meal-ing-input-${mealId}-${ingIdx}`);
+            if (!input || !input.value.trim()) return;
+
+            const newText = input.value.trim();
+            const meal = mealsData.find(m => m.id === mealId);
+            if (meal && meal.ingredients && meal.ingredients[ingIdx] !== undefined) {
+                const oldText = getIngText(meal.ingredients[ingIdx]);
+                meal.ingredients[ingIdx] = newText;
+
+                // 장보기 리스트 항목 이름 연동 업데이트
+                shoppingList = shoppingList.map(s => s.text === oldText ? { ...s, text: newText } : s);
+                saveShoppingListToDB();
+
+                saveMealsToDB();
+            }
+        }
         function deleteMealIngredient(mealId, ingIdx) {
             const meal = mealsData.find(m => m.id === mealId);
             if(meal && meal.ingredients) {
+                const deletedText = getIngText(meal.ingredients[ingIdx]);
                 meal.ingredients.splice(ingIdx, 1);
+
+                // 다른 식단에 해당 재료가 사용 중인지 검증 후 미사용 시 장보기 목록에서 자동 제거
+                const isStillUsed = mealsData.some(m => 
+                    m.ingredients && m.ingredients.some(ing => getIngText(ing) === deletedText)
+                );
+
+                if (!isStillUsed) {
+                    shoppingList = shoppingList.filter(s => s.text !== deletedText);
+                    saveShoppingListToDB();
+                }
+
                 saveMealsToDB();
             }
         }
@@ -577,31 +796,46 @@
                 if(!meal.ingredients) meal.ingredients = [];
                 meal.ingredients.push(newIng);
                 meal.isOpen = true;
-                saveMealsToDB();
 
-                db.ref('shoppingList').once('value').then(snapshot => {
-                    let list = snapshot.val() || [];
-                    if (!list.some(s => s.text === newIng)) {
-                        list.push({ id: Date.now(), text: newIng, price: 0, checked: false });
-                        db.ref('shoppingList').set(list);
-                    }
-                });
+                if (!shoppingList.some(s => s.text === newIng)) {
+                    shoppingList.push({ id: Date.now(), text: newIng, price: 0, checked: false, isEditing: false });
+                    saveShoppingListToDB();
+                }
+
+                input.value = '';
+                saveMealsToDB();
             }
         }
         function showAddMealForm() { document.getElementById('add-meal-form-box').classList.remove('hidden'); }
         function hideAddMealForm() { document.getElementById('add-meal-form-box').classList.add('hidden'); }
         function saveNewMeal() {
-            const day = document.getElementById('new-meal-day').value.trim();
-            const time = document.getElementById('new-meal-time').value.trim();
-            const title = document.getElementById('new-meal-title').value.trim();
-            const desc = document.getElementById('new-meal-desc').value.trim();
-            if (!title) return;
-            mealsData.push({ id: Date.now(), dayTag: day || "DAY 1 식단", timeTag: time || "⏱️ 시간 미정", title, desc: desc || "", isOpen: true, ingredients: [] });
+            const daySelect = document.getElementById('new-meal-day');
+            const timeSelect = document.getElementById('new-meal-time');
+            const titleInput = document.getElementById('new-meal-title');
+            const descInput = document.getElementById('new-meal-desc');
+
+            if (!titleInput || !titleInput.value.trim()) return;
+
+            mealsData.push({
+                id: Date.now(),
+                dayTag: daySelect.value,
+                timeTag: timeSelect.value,
+                title: titleInput.value.trim(),
+                desc: descInput.value.trim() || "",
+                isOpen: true,
+                isEditing: false,
+                ingredients: []
+            });
+
+            titleInput.value = '';
+            descInput.value = '';
             hideAddMealForm();
             saveMealsToDB();
         }
 
-        // C. 구매 필요 식자재 통합 리스트 DB 연동
+        // ==========================================
+        // C. 구매 필요 식자재 통합 리스트 DB 연동 (수정/삭제)
+        // ==========================================
         let shoppingList = [];
         db.ref('shoppingList').on('value', (snapshot) => {
             const data = snapshot.val();
@@ -609,15 +843,17 @@
                 shoppingList = data;
             } else {
                 shoppingList = [
-                    { id: 1, text: '팔도비빔면 5봉', price: 4800, checked: false },
-                    { id: 2, text: '냉동 차돌박이 400g', price: 16500, checked: false }
+                    { id: 1, text: '팔도비빔면 5봉', price: 4800, checked: false, isEditing: false },
+                    { id: 2, text: '냉동 차돌박이 400g', price: 16500, checked: false, isEditing: false }
                 ];
                 db.ref('shoppingList').set(shoppingList);
             }
             renderShoppingList();
         });
 
-        function saveShoppingListToDB() { db.ref('shoppingList').set(shoppingList); }
+        function saveShoppingListToDB() { 
+            db.ref('shoppingList').set(shoppingList); 
+        }
 
         function renderShoppingList() {
             const container = document.getElementById('shopping-items-container');
@@ -631,6 +867,17 @@
             const checkedTotal = shoppingList.filter(item => item.checked).reduce((sum, item) => sum + (Number(item.price) || 0), 0);
 
             container.innerHTML = shoppingList.map(item => {
+                if (item.isEditing) {
+                    return `
+                        <div class="flex items-center gap-2 py-1.5 border-b border-slate-100">
+                            <input type="text" id="edit-shop-name-${item.id}" value="${item.text}" class="flex-1 p-1.5 text-xs rounded border border-slate-300 focus:outline-none">
+                            <input type="number" id="edit-shop-price-${item.id}" value="${item.price}" placeholder="가격" class="w-20 p-1.5 text-xs rounded border border-slate-300 focus:outline-none">
+                            <button onclick="saveEditShoppingItem(${item.id})" class="text-xs font-bold text-[#3F5E00]">저장</button>
+                            <button onclick="cancelEditShoppingItem(${item.id})" class="text-xs text-slate-400">취소</button>
+                        </div>
+                    `;
+                }
+
                 const formattedPrice = item.price ? Number(item.price).toLocaleString() + '원' : '가격 미정';
                 return `
                     <div class="flex items-center justify-between py-1.5 border-b border-slate-100/80 last:border-none">
@@ -639,7 +886,11 @@
                             <span class="text-xs sm:text-sm ${item.checked ? 'line-through text-slate-400' : 'text-slate-800'} truncate">${item.text}</span>
                             <span class="text-[11px] font-semibold ${item.checked ? 'line-through text-slate-300' : 'text-[#3F5E00]'} shrink-0">(${formattedPrice})</span>
                         </label>
-                        <button onclick="deleteShoppingItem(${item.id})" class="text-[10px] text-slate-400 hover:text-rose-600 shrink-0 ml-2">삭제</button>
+                        <div class="flex items-center gap-2 text-[10px] text-slate-400 shrink-0 ml-2">
+                            <button onclick="startEditShoppingItem(${item.id})" class="hover:text-slate-700 transition-colors">수정</button>
+                            <span>•</span>
+                            <button onclick="deleteShoppingItem(${item.id})" class="hover:text-rose-600 transition-colors">삭제</button>
+                        </div>
                     </div>
                 `;
             }).join('');
@@ -647,8 +898,10 @@
         }
 
         function updateTotals(checkedTotal) {
-            document.getElementById('total-price-display').innerText = `${checkedTotal.toLocaleString()} 원`;
-            document.getElementById('per-person-price-display').innerText = `${Math.round(checkedTotal / 4).toLocaleString()} 원`;
+            const totalPriceEl = document.getElementById('total-price-display');
+            const perPersonPriceEl = document.getElementById('per-person-price-display');
+            if (totalPriceEl) totalPriceEl.innerText = `${checkedTotal.toLocaleString()} 원`;
+            if (perPersonPriceEl) perPersonPriceEl.innerText = `${Math.round(checkedTotal / 4).toLocaleString()} 원`;
         }
 
         function addShoppingItem(e) {
@@ -656,7 +909,7 @@
             const input = document.getElementById('shopping-input');
             const priceInput = document.getElementById('shopping-price-input');
             if (!input || !input.value.trim()) return;
-            shoppingList.push({ id: Date.now(), text: input.value.trim(), price: Number(priceInput.value) || 0, checked: false });
+            shoppingList.push({ id: Date.now(), text: input.value.trim(), price: Number(priceInput.value) || 0, checked: false, isEditing: false });
             input.value = ''; priceInput.value = '';
             saveShoppingListToDB();
         }
@@ -664,15 +917,37 @@
             shoppingList = shoppingList.map(item => item.id === id ? { ...item, checked: !item.checked } : item);
             saveShoppingListToDB();
         }
+        function startEditShoppingItem(id) {
+            shoppingList = shoppingList.map(item => item.id === id ? { ...item, isEditing: true } : item);
+            renderShoppingList();
+        }
+        function cancelEditShoppingItem(id) {
+            shoppingList = shoppingList.map(item => item.id === id ? { ...item, isEditing: false } : item);
+            renderShoppingList();
+        }
+        function saveEditShoppingItem(id) {
+            const nameInput = document.getElementById(`edit-shop-name-${id}`);
+            const priceInput = document.getElementById(`edit-shop-price-${id}`);
+            if (!nameInput || !nameInput.value.trim()) return;
+
+            shoppingList = shoppingList.map(item => item.id === id ? { 
+                ...item, 
+                text: nameInput.value.trim(), 
+                price: Number(priceInput.value) || 0,
+                isEditing: false 
+            } : item);
+            saveShoppingListToDB();
+        }
         function deleteShoppingItem(id) {
             shoppingList = shoppingList.filter(item => item.id !== id);
             saveShoppingListToDB();
         }
 
-        // D. 자유 의견 게시판 DB 연동 (10분 기준 "방금 전" / "아까 전" 상대시간 반영)
+        // ==========================================
+        // D. 자유 의견 게시판 DB 연동 (상대시간 + 수정/삭제)
+        // ==========================================
         let comments = [];
 
-        // 상대 시간 계산 함수
         function getRelativeTime(timestamp) {
             if (!timestamp) return '방금 전';
             const diffInMinutes = Math.floor((Date.now() - timestamp) / (1000 * 60));
@@ -687,13 +962,15 @@
             if (data) {
                 comments = data;
             } else {
-                comments = [{ id: 1, author: '관리자', text: '추가하고 싶은 항목이나 의견은 자유롭게 남겨주세요!', timestamp: Date.now(), isNotice: true }];
+                comments = [{ id: 1, author: '관리자', text: '추가하고 싶은 항목이나 의견은 자유롭게 남겨주세요!', timestamp: Date.now(), isNotice: true, isEditing: false }];
                 db.ref('comments').set(comments);
             }
             renderComments();
         });
 
-        function saveCommentsToDB() { db.ref('comments').set(comments); }
+        function saveCommentsToDB() { 
+            db.ref('comments').set(comments); 
+        }
 
         function renderComments() {
             const list = document.getElementById('comment-list');
@@ -702,18 +979,41 @@
                 list.innerHTML = '<p class="text-xs text-slate-400 text-center py-4">등록된 의견이 없습니다.</p>';
                 return;
             }
-            list.innerHTML = comments.map(c => `
-                <div class="py-2.5 space-y-1 border-b border-slate-100/80 last:border-none">
-                    <div class="flex justify-between items-center text-xs">
-                        <div class="flex items-center gap-2">
-                            <span class="font-bold text-slate-900">${c.author}</span>
-                            <span class="text-[10px] text-slate-400">${c.isNotice ? '공지' : getRelativeTime(c.timestamp)}</span>
+            list.innerHTML = comments.map(c => {
+                if (c.isEditing) {
+                    return `
+                        <div class="py-3 space-y-2 border-b border-slate-100 last:border-none">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="font-bold text-slate-900">${c.author} <span class="font-normal text-slate-400 text-[10px]">(수정 중)</span></span>
+                            </div>
+                            <input type="text" id="edit-input-${c.id}" value="${c.text}" class="w-full p-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:outline-none">
+                            <div class="flex justify-end gap-2 text-[11px]">
+                                <button onclick="saveEditComment(${c.id})" class="font-bold text-[#3F5E00] hover:underline">저장</button>
+                                <button onclick="cancelEditComment(${c.id})" class="text-slate-400">취소</button>
+                            </div>
                         </div>
-                        ${!c.isNotice ? `<button onclick="deleteComment(${c.id})" class="text-[10px] text-slate-400 hover:text-rose-600">삭제</button>` : ''}
+                    `;
+                }
+
+                return `
+                    <div class="py-2.5 space-y-1 border-b border-slate-100/80 last:border-none">
+                        <div class="flex justify-between items-center text-xs">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-slate-900">${c.author}</span>
+                                <span class="text-[10px] text-slate-400">${c.isNotice ? '공지' : getRelativeTime(c.timestamp)}</span>
+                            </div>
+                            ${!c.isNotice ? `
+                                <div class="flex items-center gap-2 text-[10px] text-slate-400">
+                                    <button onclick="startEditComment(${c.id})" class="hover:text-slate-700 transition-colors">수정</button>
+                                    <span>•</span>
+                                    <button onclick="deleteComment(${c.id})" class="hover:text-rose-600 transition-colors">삭제</button>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${c.text}</p>
                     </div>
-                    <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${c.text}</p>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function addComment(e) {
@@ -721,8 +1021,23 @@
             const authorInput = document.getElementById('comment-author');
             const textInput = document.getElementById('comment-text');
             if (!authorInput.value.trim() || !textInput.value.trim()) return;
-            comments.unshift({ id: Date.now(), author: authorInput.value.trim(), text: textInput.value.trim(), timestamp: Date.now(), isNotice: false });
+            comments.unshift({ id: Date.now(), author: authorInput.value.trim(), text: textInput.value.trim(), timestamp: Date.now(), isNotice: false, isEditing: false });
             authorInput.value = ''; textInput.value = '';
+            saveCommentsToDB();
+        }
+        function startEditComment(id) {
+            comments = comments.map(c => c.id === id ? { ...c, isEditing: true } : c);
+            renderComments();
+        }
+        function cancelEditComment(id) {
+            comments = comments.map(c => c.id === id ? { ...c, isEditing: false } : c);
+            renderComments();
+        }
+        function saveEditComment(id) {
+            const input = document.getElementById(`edit-input-${id}`);
+            if (!input || !input.value.trim()) return;
+
+            comments = comments.map(c => c.id === id ? { ...c, text: input.value.trim(), isEditing: false } : c);
             saveCommentsToDB();
         }
         function deleteComment(id) {
