@@ -284,7 +284,7 @@
                     </button>
                 </div>
 
-                <!-- 새 식단 등록 폼 (드롭다운 적용) -->
+                <!-- 새 식단 등록 폼 -->
                 <div id="add-meal-form-box" class="hidden bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
                     <h4 class="font-bold text-xs sm:text-sm text-slate-900">새 식단 코스 등록</h4>
                     <div class="grid grid-cols-2 gap-2">
@@ -340,7 +340,7 @@
 
                 <div id="meals-list-container" class="space-y-8 pt-2"></div>
 
-                <!-- 구매 필요 식자재 통합 리스트 & N빵 실시간 계산기 -->
+                <!-- 구매 필요 식자재 통합 리스트 -->
                 <div class="space-y-3 pt-4 border-t border-slate-100">
                     <div class="flex items-center justify-between">
                         <div class="space-y-1">
@@ -429,7 +429,6 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // 선택식 태그 상수 배열
         const DAY_TAG_OPTIONS = [
             "DAY 1 아침", "DAY 1 점심", "DAY 1 저녁", "DAY 1 간식", "DAY 1 야식",
             "DAY 2 아침", "DAY 2 점심"
@@ -479,7 +478,7 @@
         }
 
         // ==========================================
-        // A. 준비물 DB 연동 (수정/삭제 가능)
+        // A. 준비물 DB 연동
         // ==========================================
         let checklistData = [];
         db.ref('checklistData').on('value', (snapshot) => {
@@ -583,7 +582,7 @@
         }
 
         // ==========================================
-        // B. 먹방 코스 DB 연동 (선택식 태그 + 수정/삭제)
+        // B. 먹방 코스 DB 연동 (기본 상태 토글 닫힘 보장)
         // ==========================================
         let mealsData = [];
 
@@ -597,7 +596,8 @@
         db.ref('mealsData').on('value', (snapshot) => {
             const data = snapshot.val();
             if (data) {
-                mealsData = data;
+                // DB에서 데이터를 가져올 때 무조건 isOpen을 false(닫힘) 상태로 정제
+                mealsData = data.map(m => ({ ...m, isOpen: false }));
             } else {
                 mealsData = [
                     { id: 1, dayTag: "DAY 1 점심", timeTag: "⏱️ 12:00", title: "차돌박이 비빔면 (5봉) & 군만두", desc: "피칭 후 차가운 비빔면과 갓 구운 차돌박이 조합.", isOpen: false, ingredients: ["팔도비빔면 5봉", "냉동 차돌박이 400g", "냉동 군만두 대용량", "파채 + 식용유"] },
@@ -733,7 +733,6 @@
             saveMealsToDB();
         }
 
-        // 재료 수정 기능
         function startEditMealIngredient(mealId, ingIdx) {
             const meal = mealsData.find(m => m.id === mealId);
             if (meal && meal.ingredients && meal.ingredients[ingIdx] !== undefined) {
@@ -760,7 +759,6 @@
                 const oldText = getIngText(meal.ingredients[ingIdx]);
                 meal.ingredients[ingIdx] = newText;
 
-                // 장보기 리스트 항목 이름 연동 업데이트
                 shoppingList = shoppingList.map(s => s.text === oldText ? { ...s, text: newText } : s);
                 saveShoppingListToDB();
 
@@ -773,7 +771,6 @@
                 const deletedText = getIngText(meal.ingredients[ingIdx]);
                 meal.ingredients.splice(ingIdx, 1);
 
-                // 다른 식단에 해당 재료가 사용 중인지 검증 후 미사용 시 장보기 목록에서 자동 제거
                 const isStillUsed = mealsData.some(m => 
                     m.ingredients && m.ingredients.some(ing => getIngText(ing) === deletedText)
                 );
@@ -795,7 +792,7 @@
             if(meal) {
                 if(!meal.ingredients) meal.ingredients = [];
                 meal.ingredients.push(newIng);
-                meal.isOpen = true;
+                meal.isOpen = true; // 새 재료 추가 시에만 해당 영역 열어주기
 
                 if (!shoppingList.some(s => s.text === newIng)) {
                     shoppingList.push({ id: Date.now(), text: newIng, price: 0, checked: false, isEditing: false });
@@ -822,7 +819,7 @@
                 timeTag: timeSelect.value,
                 title: titleInput.value.trim(),
                 desc: descInput.value.trim() || "",
-                isOpen: true,
+                isOpen: false, // 새 식단 등록 시 기본 닫힘
                 isEditing: false,
                 ingredients: []
             });
@@ -834,7 +831,7 @@
         }
 
         // ==========================================
-        // C. 구매 필요 식자재 통합 리스트 DB 연동 (수정/삭제)
+        // C. 구매 필요 식자재 통합 리스트 DB 연동
         // ==========================================
         let shoppingList = [];
         db.ref('shoppingList').on('value', (snapshot) => {
@@ -944,7 +941,7 @@
         }
 
         // ==========================================
-        // D. 자유 의견 게시판 DB 연동 (상대시간 + 수정/삭제)
+        // D. 자유 의견 게시판 DB 연동
         // ==========================================
         let comments = [];
 
